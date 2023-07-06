@@ -35,28 +35,6 @@ a, a:visited, a:hover {
 #music-btn:hover {
     box-shadow: 0px 0px 10px 0px whitesmoke;
 }
-#start-btn {
-    width: 120px;
-    height: 30px;
-    
-    border-color: transparent;
-
-    background-color: whitesmoke;
-    
-    
-        -webkit-border-radius: 60px;
-        border-radius: 6px;
-        border: none;
-        color: #eeeeee;
-        cursor: pointer;
-        display: inline-block;
-        font-family: sans-serif;
-        font-size: 20px;
-        padding: 5px 15px;
-        text-align: center;
-        text-decoration: none;
-      }
-
 @keyframes glowing {
     0% {
       background-color: gray;
@@ -70,11 +48,18 @@ a, a:visited, a:hover {
       background-color: gray;
       box-shadow: 0 0 5px gray;
     }
-  }
-  #start-btn  {
+}
+#start-btn {
+    width: 120px;
+    height: 30px;   
+    color: whitesmoke;
+    border: none;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 0px 15px 5px;
+    text-align: center;
     animation: glowing 3000ms infinite;
-  }
-
+}
 #start-container{
     width: 100vw;
     display: flex;    
