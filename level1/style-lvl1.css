@@ -1,0 +1,37 @@
+body{
+    background-color: black;
+    margin: auto;
+    color: whitesmoke;
+}
+#menu {
+    margin: 10px;
+}
+
+#music-btn, #nxtlvl-btn, #prevlvl-btn, #rldlvl-btn {
+    color: whitesmoke;
+    background-color: darkblue;
+    border: 0px solid darkblue;
+    margin: 3px;
+    padding: 3px 10px;
+    border-radius: 25px;
+    font-size: 22px;
+}
+
+a, a:visited, a:hover {
+    text-decoration: none;
+    color: whitesmoke;
+}
+#music-btn:hover, #nxtlvl-btn:hover, #rldlvl-btn:hover {
+    box-shadow: 0px 0px 10px 0px whitesmoke;
+}
+
+#opening-gif{
+    height: 600px;
+    background-color: black;
+    display: flex;
+    padding-top: 30px;
+    align-items: center;
+}
+#op-gif {
+    width: 100vw;
+}

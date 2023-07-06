@@ -1,0 +1,59 @@
+body{
+    background-color: black;
+    margin: auto;
+    color: whitesmoke;
+
+}
+#menu {
+    margin: 10px; 
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: start;
+    display: flex;
+    margin-left: 1px;
+    padding-left: 1px;
+
+
+
+}
+
+#music-btn{
+    color: whitesmoke;
+    background-color: darkblue;
+    border: 0px solid darkblue;
+    margin: 3px;
+    padding: 3px 10px;
+    border-radius: 25px;
+    font-size: 22px;
+   
+}
+a, a:visited, a:hover {
+    text-decoration: none;
+    color: whitesmoke;
+}
+#music-btn:hover {
+    box-shadow: 0px 0px 10px 0px whitesmoke;
+}
+#start-btn {
+    width: 120px;
+    height: 30px;
+    
+    border-color: transparent;
+
+    background-color: whitesmoke;
+    
+
+}
+
+#start-container{
+    width: 100vw;
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    padding-top: 520px;
+}
+#op-poster {
+    width: 100vw;  
+}
