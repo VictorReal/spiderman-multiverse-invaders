@@ -1,5 +1,5 @@
 function preload() {
-  this.load.image('miles', '../general/miles.svg');
+  this.load.image('miles', '../miles-test.png');
   this.load.image('spiderReweb', '../general/spiderReweb.png');  
   this.load.image('rightButton', '../general/btn-right.svg');
   this.load.image('leftButton', '../general/btn-left.svg');
@@ -7,10 +7,9 @@ function preload() {
   this.load.image('platform', '../general/platform.png');
 
   this.load.image('spiderWeb', './web2099.png');
-  this.load.image('spider-man2099', './spider-man2099.png');
+  this.load.image('spider-man2099', '../spider-man2099-test.png');
   this.load.image('portal', './portal.png')
   this.load.image('bg', './bg.png');
-
 };
 
 function sortedEnemies() {
@@ -45,7 +44,7 @@ function create() {
   platforms.create(225, 470, 'platform').setScale(1, 0.3).refreshBody();
   gameState.scoreText = this.add.text(5, 463, `Score: ${gameState.score}`, { fontSize: '14px', fill: '#ffffff' });
 
-  gameState.player = this.physics.add.sprite(200, 420, 'miles').setScale(0.2);
+  gameState.player = this.physics.add.sprite(200, 420, 'miles').setScale(0.12);
 
   gameState.player.setCollideWorldBounds(true);
   this.physics.add.collider(gameState.player, platforms);
@@ -107,11 +106,12 @@ function create() {
         });
         if (availableEnemies.length > 0) {
  
-            const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);const portal = this.add.image(randomX, randomY, 'portal').setScale(0.08).setAlpha(0.8);
+            const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);
+            const portal = this.add.image(randomX, randomY, 'portal').setScale(0.08).setAlpha(0.8);
               this.time.delayedCall(800, () => {
                 portal.destroy();
               });
-            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.1).setGravityY(-198);
+            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-199);
 
           
               
@@ -135,7 +135,11 @@ function create() {
       });
       if (!isTooClose) {
         const randomSpiderman = Phaser.Utils.Array.GetRandom(spidermen);
-        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.1).setGravityY(-197);
+        const portal = this.add.image(randomX, randomY, 'portal').setScale(0.08).setAlpha(0.8);
+              this.time.delayedCall(800, () => {
+                portal.destroy();
+              });
+        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-199);
         break;
       }
     } while (true);
@@ -145,7 +149,10 @@ function create() {
   const genWeb = () => {
     let randomSpider = Phaser.Utils.Array.GetRandom(gameState.enemies.getChildren());
     if (randomSpider) {
-      const web = webs.create(randomSpider.x, randomSpider.y, 'spiderWeb').setGravityY(-75).setGravityX(-30);
+
+      const chaosX = (Math.random() < 0.5 ? -1 : 1)* Math.random() * 100;
+
+      const web = webs.create(randomSpider.x, randomSpider.y, 'spiderWeb').setGravityY(-75).setGravityX(chaosX);
       web.setCollideWorldBounds(true); 
       this.physics.add.collider(webs, platforms, (web) => {
         web.destroy();
@@ -204,14 +211,14 @@ function update() {
       gameState.scoreText.setText(`Score: ${gameState.score}`);
     });
 
-    this.physics.add.collider(gameState.enemies, gameState.player, () => {
+    this.physics.add.collider(gameState.enemies, gameState.player, (enemy, player) => {
       gameState.active = false;
       gameState.websLoop.destroy();
       this.physics.pause();
       gameState.enemyVelocity = 1;
       gameState.score = 0;
       gameState.scoreText.setText(`Score: ${gameState.score}`);
-      const catchedText = this.add.text(80, 250, 'They catched you!', { fontSize: '24px', fill: '#ffffff' });
+      const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
       catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
       const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
       restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
@@ -238,7 +245,7 @@ function update() {
           gameState.enemyVelocity = 1;
           gameState.score = 0;
           gameState.scoreText.setText(`Score: ${gameState.score}`);
-          const catchedText = this.add.text(80, 250, 'They catched you!', { fontSize: '24px', fill: '#ffffff' });
+          const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
           catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
           const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
           restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });

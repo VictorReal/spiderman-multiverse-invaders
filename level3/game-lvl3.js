@@ -1,5 +1,5 @@
 function preload() {
-  this.load.image('miles', '../general/miles.svg');
+  this.load.image('miles', '../miles-test.png');
   /* this.load.image('spiderReweb', '../general/spiderReweb.png');  */
   this.load.image('rightButton', '../general/btn-right.svg');
   this.load.image('leftButton', '../general/btn-left.svg');
@@ -50,7 +50,7 @@ function create() {
   platforms.create(225, 470, 'platform').setScale(1, 0.3).refreshBody();
   gameState.scoreText = this.add.text(5, 463, `Score: ${gameState.score}`, { fontSize: '14px', fill: '#ffffff' });
 
-  gameState.player = this.physics.add.sprite(200, 420, 'miles').setScale(0.2);
+  gameState.player = this.physics.add.sprite(200, 420, 'miles').setScale(0.12);
 
   gameState.player.setCollideWorldBounds(true);
   this.physics.add.collider(gameState.player, platforms);
@@ -241,14 +241,14 @@ function update() {
       gameState.scoreText.setText(`Score: ${gameState.score}`);
     });
 
-    this.physics.add.collider(gameState.enemies, gameState.player, () => {
+    this.physics.add.collider(gameState.enemies, gameState.player, (enemy, player) => {
       gameState.active = false;
       gameState.websLoop.destroy();
       this.physics.pause();
       gameState.enemyVelocity = 1;
       gameState.score = 0;
       gameState.scoreText.setText(`Score: ${gameState.score}`);
-      const catchedText = this.add.text(80, 250, 'They catched you!', { fontSize: '24px', fill: '#ffffff' });
+      const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
       catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
       const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
       restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
@@ -279,7 +279,7 @@ function update() {
           gameState.enemyVelocity = 1;
           gameState.score = 0;
           gameState.scoreText.setText(`Score: ${gameState.score}`);
-          const catchedText = this.add.text(80, 250, 'They catched you!', { fontSize: '24px', fill: '#ffffff' });
+          const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
           catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
           const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
           restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });

@@ -1,5 +1,5 @@
 function preload() {
-  this.load.image('miles', '../general/miles.svg');
+  this.load.image('miles', '../miles-test.png');
   this.load.image('spiderReweb', '../general/spiderReweb.png');  
   this.load.image('rightButton', '../general/btn-right.svg');
   this.load.image('leftButton', '../general/btn-left.svg');
@@ -7,12 +7,12 @@ function preload() {
   this.load.image('platform', '../general/platform.png');
 
   this.load.image('spiderWeb', './spiderWeb.png');
-  this.load.image('spidy1', './enemy1.svg');
-  this.load.image('spidy2', './enemy2.svg');
-  this.load.image('spidy3', './enemy3.svg');
-  this.load.image('spider-woman', './spider-woman.png');
-  this.load.image('scarlet-spider', './scarlet-spider.png');
-  this.load.image('spider-man2099', './spider-man2099.png');
+  this.load.image('spidy1', '../enemy1-test.png');
+  this.load.image('spidy2', '../enemy2-test.png');
+  this.load.image('spidy3', '../enemy3-test.png');
+  this.load.image('spider-woman', '../spider-woman-test.png');
+  this.load.image('scarlet-spider', '../scarlet-spider-test.png');
+  this.load.image('spider-man2099', '../spider-man2099-test.png');
   this.load.image('bg', './bg.png');
 
 
@@ -49,7 +49,7 @@ function create() {
   platforms.create(225, 470, 'platform').setScale(1, 0.3).refreshBody();
   gameState.scoreText = this.add.text(5, 463, `Score: ${gameState.score}`, { fontSize: '14px', fill: '#ffffff' });
 
-  gameState.player = this.physics.add.sprite(200, 420, 'miles').setScale(0.2);
+  gameState.player = this.physics.add.sprite(200, 420, 'miles').setScale(0.12);
 
   gameState.player.setCollideWorldBounds(true);
   this.physics.add.collider(gameState.player, platforms);
@@ -146,21 +146,21 @@ function create() {
           if (gameState.score > 19 && !gameState.spawnedEnemy1) {
             const newEnemy1 = 'spider-woman';
             availableEnemies.push(newEnemy1);
-            gameState.enemies.create(randomX, randomY, newEnemy1).setScale(0.06).setGravityY(-199);
+            gameState.enemies.create(randomX, randomY, newEnemy1).setScale(0.09).setGravityY(-199);
             gameState.spawnedEnemy1 = true;
           } else if (gameState.score > 29 && !gameState.spawnedEnemy2) {
             const newEnemy2 = 'scarlet-spider';
             availableEnemies.push(newEnemy2);
-            gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.06).setGravityY(-197);
+            gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.09).setGravityY(-197);
             gameState.spawnedEnemy2 = true;
           } else if (gameState.score > 39 && !gameState.spawnedEnemy3) {
             const newEnemy3 = 'spider-man2099';
             availableEnemies.push(newEnemy3);
-            gameState.enemies.create(randomX, randomY, newEnemy3).setScale(0.06).setGravityY(-196);
+            gameState.enemies.create(randomX, randomY, newEnemy3).setScale(0.09).setGravityY(-196);
             gameState.spawnedEnemy3 = true;
           } else {
             const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);
-            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.06).setGravityY(-199);
+            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-199);
           }
         }
         enemyCount++; 
@@ -181,7 +181,7 @@ function create() {
       });
       if (!isTooClose) {
         const randomSpiderman = Phaser.Utils.Array.GetRandom(spidermen);
-        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.06).setGravityY(-200);
+        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-200);
         break;
       }
     } while (true);
@@ -250,14 +250,14 @@ function update() {
       gameState.scoreText.setText(`Score: ${gameState.score}`);
     });
 
-    this.physics.add.collider(gameState.enemies, gameState.player, () => {
+    this.physics.add.collider(gameState.enemies, gameState.player, (enemy, player) => {
       gameState.active = false;
       gameState.websLoop.destroy();
       this.physics.pause();
       gameState.enemyVelocity = 1;
       gameState.score = 0;
       gameState.scoreText.setText(`Score: ${gameState.score}`);
-      const catchedText = this.add.text(80, 250, 'They catched you!', { fontSize: '24px', fill: '#ffffff' });
+      const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
       catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
       const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
       restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
@@ -288,7 +288,7 @@ function update() {
           gameState.enemyVelocity = 1;
           gameState.score = 0;
           gameState.scoreText.setText(`Score: ${gameState.score}`);
-          const catchedText = this.add.text(80, 250, 'They catched you!', { fontSize: '24px', fill: '#ffffff' });
+          const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
           catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
           const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
           restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
