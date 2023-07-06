@@ -2,22 +2,12 @@ body{
     background-color: black;
     margin: auto;
     color: whitesmoke;
-
 }
 #menu {
     margin: 10px; 
     display: flex;
-
-    justify-content: flex-start;
-    align-items: start;
-    display: flex;
-    margin-left: 1px;
-    padding-left: 1px;
-
-
-
+    justify-content: flex-end;
 }
-
 #music-btn{
     color: whitesmoke;
     background-color: darkblue;
@@ -26,7 +16,6 @@ body{
     padding: 3px 10px;
     border-radius: 25px;
     font-size: 22px;
-   
 }
 a, a:visited, a:hover {
     text-decoration: none;
@@ -49,15 +38,12 @@ a, a:visited, a:hover {
       box-shadow: 0 0 5px gray;
     }
 }
-#start-btn {
-    width: 120px;
-    height: 30px;   
+#start-btn { 
     color: whitesmoke;
     border: none;
     border-radius: 6px;
     font-size: 20px;
-    padding: 0px 15px 5px;
-    text-align: center;
+    padding: 5px 15px;
     animation: glowing 3000ms infinite;
 }
 #start-container{
