@@ -41,7 +41,7 @@ a, a:visited, a:hover {
 #start-btn { 
     color: whitesmoke;
     border: none;
-    border-radius: 6px;
+    border-radius: 15px;
     font-size: 20px;
     padding: 5px 15px;
     animation: glowing 3000ms infinite;
