@@ -41,3 +41,12 @@ a, a:visited, a:hover {
 #op-gif {
     width: 100vw;
 }
+@media (min-width: 850px) {
+    body{
+        width: 400px;
+        margin-left: 500px;
+    }
+    #op-gif {
+       width: 100%;
+    }
+}

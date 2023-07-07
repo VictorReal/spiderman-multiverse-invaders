@@ -84,8 +84,8 @@ function create() {
     }
   });
   
-  const buttonX = window.innerWidth - 90;
-  const spaceButton = this.add.image(buttonX, 512, 'spaceButton')
+  const buttonX = newWidth();
+  const spaceButton = this.add.image(buttonX-50, 512, 'spaceButton')
     .setInteractive()
     .setAlpha(0.5);
   spaceButton.on('pointerdown', () => {
@@ -296,9 +296,18 @@ function update() {
   }
 }
 
+function newWidth(){
+  if(window.innerWidth < 850){
+    return window.innerWidth - 50
+  }else{
+    return 350
+  } 
+}
+
+
 const config = {
   type: Phaser.AUTO,
-  width: window.innerWidth - 50,
+  width: newWidth(),
   height: 630,
   physics: {
     default: 'arcade',

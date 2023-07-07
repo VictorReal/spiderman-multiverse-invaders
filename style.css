@@ -57,3 +57,16 @@ a, a:visited, a:hover {
 #op-poster {
     width: 100vw;  
 }
+@media (min-width: 850px) {
+    body{
+        width: 400px;
+        margin-left: 500px;
+    }
+    #start-container  {
+        width: 400px;
+    }
+    #op-poster{
+        width: 100%;  
+    }
+    
+}
