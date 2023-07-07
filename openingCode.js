@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const audio = document.getElementById('myAudio');
-  audio.muted = false;
+  const myAudio = document.getElementById('myAudio');
+
+
+  myAudio.muted = false;
 
 
 const musicToggleBtn = document.getElementById('music-btn');
-const myAudio = document.getElementById('myAudio');
 
 musicToggleBtn.addEventListener('click', function() {
   if (myAudio.paused) {
