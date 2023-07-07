@@ -95,7 +95,7 @@ function create() {
   function addEnemy() {
     if (enemyCount < 55) {
       const randomX = Math.random() * 300 + 25;
-      const randomY = Math.random() * 270 + 45;
+      const randomY = Math.random() * 120 + 45;
   
       if (gameState.active) {
         let availableEnemies = spidermen.slice();
@@ -112,7 +112,7 @@ function create() {
               this.time.delayedCall(800, () => {
                 portal.destroy();
               });
-            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-196);            
+            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-198);            
           }      
         enemyCount++;  
       }
@@ -123,7 +123,7 @@ function create() {
     let randomX, randomY;  
     do {
       randomX = Math.random() * 300 + 25;
-      randomY = Math.random() * 170 + 55;
+      randomY = Math.random() * 120 + 55;
       const proximityThreshold = 40;
   
       const isTooClose = gameState.enemies.getChildren().some(enemy => {
@@ -136,7 +136,7 @@ function create() {
               this.time.delayedCall(800, () => {
                 portal.destroy();
               });
-        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-196);
+        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-198);
         break;
       }
     } while (true);
@@ -146,7 +146,7 @@ function create() {
   const genWeb = () => {
     let randomSpider = Phaser.Utils.Array.GetRandom(gameState.enemies.getChildren());
     if (randomSpider) {
-      const web = webs.create(randomSpider.x, randomSpider.y, 'spiderWeb').setGravityY(-75).setGravityX(-30);
+      const web = webs.create(randomSpider.x, randomSpider.y, 'spiderWeb').setGravityY(-75).setGravityX(10);
       web.setCollideWorldBounds(true); 
       this.physics.add.collider(webs, platforms, (web) => {
         web.destroy();
@@ -233,17 +233,23 @@ function update() {
     } else {
       gameState.enemies.getChildren().forEach(spider => {
         spider.x += gameState.enemyVelocity;
-        if (spider.y >= 470) {
-          gameState.active = false;
-          gameState.websLoop.destroy();
-          this.physics.pause();
+        let finalY = Math.random() * 100 + 300;    
+        if (spider.y >= finalY) {
+          const portalIn = this.add.image(spider.x, spider.y, 'portal').setScale(0.08).setAlpha(1);
+      
+          const moveSpider = Math.random() * 155 + 45;
+          this.time.delayedCall(600, () => {
+            portalIn.destroy();
+          });
+          spider.y = moveSpider;
+      
+          const portalOut = this.add.image(spider.x, spider.y, 'portal').setScale(0.08).setAlpha(1);
+          this.time.delayedCall(600, () => {
+            portalOut.destroy();
+          });
+      
+          spider.setGravityY(-199);
           gameState.enemyVelocity = 1;
-          gameState.score = 0;
-          gameState.scoreText.setText(`Score: ${gameState.score}`);
-          const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
-          catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
-          const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
-          restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
         }
       });
 
