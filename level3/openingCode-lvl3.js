@@ -8,7 +8,7 @@ setTimeout(function() {
   gameScript.src = 'game-lvl3.js';
 
   gameContainer.appendChild(gameScript);
-}, 71);
+}, 4400);
 
 document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('myAudio');
