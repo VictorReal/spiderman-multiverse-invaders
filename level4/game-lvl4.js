@@ -112,7 +112,7 @@ function create() {
               this.time.delayedCall(800, () => {
                 portal.destroy();
               });
-            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-198);            
+            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-194);            
           }      
         enemyCount++;  
       }
@@ -136,7 +136,7 @@ function create() {
               this.time.delayedCall(800, () => {
                 portal.destroy();
               });
-        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-198);
+        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-199);
         break;
       }
     } while (true);
@@ -179,7 +179,7 @@ function create() {
     fightText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
   });  
 
-  gameState.enemyVelocity = 0.7;
+  gameState.enemyVelocity = 1.2;
 }
 
 
@@ -242,13 +242,14 @@ function update() {
             portalIn.destroy();
           });
           spider.y = moveSpider;
+          spider.x = moveSpider;
       
           const portalOut = this.add.image(spider.x, spider.y, 'portal').setScale(0.08).setAlpha(1);
           this.time.delayedCall(600, () => {
             portalOut.destroy();
           });
       
-          spider.setGravityY(-199);
+          spider.setGravityY(-200);
           gameState.enemyVelocity = 1;
         }
       });

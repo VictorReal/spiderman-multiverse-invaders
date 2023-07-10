@@ -157,7 +157,7 @@ function create() {
   };
   
   gameState.websLoop = this.time.addEvent({
-    delay: 1500,
+    delay: 750,
     callback: genWeb,
     callbackScope: this,
     loop: true,

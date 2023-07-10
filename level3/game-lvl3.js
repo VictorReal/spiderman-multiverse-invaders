@@ -215,7 +215,7 @@ function create() {
     fightText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
   });  
 
-  gameState.enemyVelocity = 0.4;
+  gameState.enemyVelocity = 0.7;
 }
 
 

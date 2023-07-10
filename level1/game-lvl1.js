@@ -160,7 +160,7 @@ function create() {
             gameState.spawnedEnemy3 = true;
           } else {
             const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);
-            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-199);
+            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-198);
           }
         }
         enemyCount++; 
@@ -181,7 +181,7 @@ function create() {
       });
       if (!isTooClose) {
         const randomSpiderman = Phaser.Utils.Array.GetRandom(spidermen);
-        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-200);
+        gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-198);
         break;
       }
     } while (true);
