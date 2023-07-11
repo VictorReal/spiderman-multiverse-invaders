@@ -4,20 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spiderman: Multiverse Invaders</title>
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="icon" type="image/png" href="./general/icon.jpg">
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+    <link rel="icon" type="image/png" href="./media/icon.jpg">
 </head>
 <body>
-    <div id="menu">   
-        <audio id="myAudio" src="./general/theme.mp3" autoplay></audio>
-        <button id="music-btn">Pause Music</button>           
-    </div>
-    <div id="start-container">
-        <a href="./level1/index-lvl1.html"><button id="start-btn">Click to Start Your Adventure</button></a>
-    </div>
-    <div id="opening-poster">
-        <img id="op-poster" src="./general/poster.jpg" alt="Opening poster">
-    </div> 
-    <script src="./openingCode.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
+
+    <script defer src="./lvl1GameScene.js"></script>
+    <script defer src="./game.js"></script>
 </body>
 </html>
