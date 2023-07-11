@@ -29,7 +29,8 @@ function numOfTotalEnemies() {
 };
 
 const gameState = {
-  score: 0
+  score: 0,
+  lives: 5
 };
 
 function create() {
@@ -45,9 +46,12 @@ function create() {
   background.setOrigin(0, 0);
   background.setScale(0.6);
 
+  const buttonX = newWidth();
+
   const platforms = this.physics.add.staticGroup();
   platforms.create(225, 470, 'platform').setScale(1, 0.3).refreshBody();
   gameState.scoreText = this.add.text(5, 463, `Score: ${gameState.score}`, { fontSize: '14px', fill: '#ffffff' });
+  gameState.livesText = this.add.text(buttonX-75, 463, `Lives: ${gameState.lives}`, { fontSize: '14px', fill: '#ffffff' });
 
   gameState.player = this.physics.add.sprite(200, 420, 'miles').setScale(0.12);
 
@@ -82,8 +86,7 @@ function create() {
       gameState.player.setVelocityX(0);
     }
   });
-  
-  const buttonX = newWidth();
+
   const spaceButton = this.add.image(buttonX-50, 512, 'spaceButton')
     .setInteractive()
     .setAlpha(0.5);
@@ -214,14 +217,29 @@ function create() {
   });
 
   this.physics.add.collider(gameState.player, webs, () => {
-    gameState.active = false;
-    gameState.websLoop.destroy();
-    this.physics.pause();
-    gameState.enemyVelocity = 1;
-    const canonText = this.add.text(80, 250, 'It was a canon event', { fontSize: '18px', fill: '#ffffff' });
-    canonText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
-    const fightText = this.add.text(65, 270, 'Stand up and fight!', { fontSize: '22px', fill: '#ffffff' });
-    fightText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
+    if(gameState.lives === 1){
+      gameState.active = false;
+      gameState.websLoop.destroy();
+      this.physics.pause();
+      gameState.score = 0;
+      gameState.lives = 5;
+      gameState.scoreText.setText(`Score: ${gameState.score}`);
+      gameState.livesText.setText(`Lives: ${gameState.lives}`);
+      const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
+      catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
+      const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
+      restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
+    } else {
+      gameState.active = false;
+      gameState.websLoop.destroy();
+      this.physics.pause();
+      gameState.lives -= 1;
+      gameState.livesText.setText(`Lives: ${gameState.lives}`);
+      const canonText = this.add.text(80, 250, 'It was a canon event', { fontSize: '18px', fill: '#ffffff' });
+      canonText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
+      const fightText = this.add.text(65, 270, 'Stand up and fight!', { fontSize: '22px', fill: '#ffffff' });
+      fightText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
+    }
   });  
 
   gameState.enemyVelocity = 0.4;
