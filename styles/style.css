@@ -1,11 +1,12 @@
-
-
-
 body{
     background-color: black;
     margin: auto;
     color: whitesmoke;
+    margin-top: 20px;
 }
+/*
+
+
 #menu {
     margin: 10px; 
     display: flex;

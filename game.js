@@ -4,6 +4,8 @@ const gameState = {
   isPaused: false,
 };
 let musicPosition = 0;
+
+
   
 function newWidth(){
   if(window.innerWidth < 850){
@@ -25,7 +27,7 @@ const config = {
       enableBody: true,
     },
   },
-  scene: [lvl1GameScene],
+  scene: [lvl1GameScene, lvl2GameScene],
   scale: {
     mode: Phaser.Scale.FIT,
   },
