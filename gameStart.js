@@ -1,4 +1,4 @@
-class lvl1GameStart extends Phaser.Scene {
+/*class lvl1GameStart extends Phaser.Scene {
 	constructor() {
 		super({ key: 'lvl1GameStart' });
 	}
@@ -28,4 +28,4 @@ class lvl1GameStart extends Phaser.Scene {
         this.scene.start('lvl1GameScene');
     }, this);
 	}
-}
+}*/
