@@ -27,7 +27,7 @@ const config = {
       enableBody: true,
     },
   },
-  scene: [lvl1GameStart, lvl1GameScene, lvl2GameStart, lvl2GameScene],
+  scene: [lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart, lvl2GameScene],
   scale: {
     mode: Phaser.Scale.FIT,
   },

@@ -34,8 +34,8 @@ class lvl2GameScene extends Phaser.Scene {
   create() {
     gameState.active = true;
     this.input.on('pointerup', () => {
-      if (gameState.active === false) {
-        this.scene.restart();
+      if (gameState.active === false && gameState.score < 40) {
+				this.scene.restart();
       }
     });
 

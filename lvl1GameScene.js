@@ -38,7 +38,7 @@ class lvl1GameScene extends Phaser.Scene {
 	create() {
     gameState.active = true;
 		this.input.on('pointerup', () => {
-			if (gameState.active === false) {
+			if (gameState.active === false && gameState.score < 40) {
 				this.scene.restart();
 			}
 		});
@@ -130,7 +130,7 @@ class lvl1GameScene extends Phaser.Scene {
 
 
 		const spidermen = ['spidy1', 'spidy2', 'spidy3', 'spidy1', 'spidy2', 'spidy3'];
-		let enemyCount = 6;
+		let enemyCount = 5;
 
 		function addEnemy() {
 			if (enemyCount < 45) {
@@ -161,10 +161,10 @@ class lvl1GameScene extends Phaser.Scene {
 							availableEnemies.push(newEnemy1);
 							gameState.enemies.create(randomX, randomY, newEnemy1).setScale(0.09).setGravityY(-198);
 							gameState.spawnedEnemy1 = true;
-						} else if (gameState.score > 25 && !gameState.spawnedEnemy2) {
+						} else if (gameState.score > 25 && !gameState.spawnedEnemy2){
 							const newEnemy2 = 'scarlet-spider';
 							availableEnemies.push(newEnemy2);
-							gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.09).setGravityY(-197);
+							gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.09).setGravityY(-199);
 							gameState.spawnedEnemy2 = true;
 						} else if (gameState.score > 35 && !gameState.spawnedEnemy3) {
 							const newEnemy3 = 'spider-man2099';
@@ -173,7 +173,7 @@ class lvl1GameScene extends Phaser.Scene {
 							gameState.spawnedEnemy3 = true;
 						} else {
 							const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);
-							gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-199);
+							gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-200);
 						}
 					}
 					enemyCount++;
@@ -185,7 +185,7 @@ class lvl1GameScene extends Phaser.Scene {
 			let randomX, randomY;
 			do {
 				randomX = Math.random() * 300 + 25;
-				randomY = Math.random() * 70 + 75;
+				randomY = Math.random() * 120 + 75;
 				const proximityThreshold = 45;
 
 				const isTooClose = gameState.enemies.getChildren().some(enemy => {
@@ -194,7 +194,7 @@ class lvl1GameScene extends Phaser.Scene {
 				});
 				if (!isTooClose) {
 					const randomSpiderman = Phaser.Utils.Array.GetRandom(spidermen);
-					gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-199);
+					gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.08).setGravityY(-200);
 					break;
 				}
 			} while (true);
