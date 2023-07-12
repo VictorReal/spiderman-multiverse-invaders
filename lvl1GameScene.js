@@ -283,7 +283,9 @@ class lvl1GameScene extends Phaser.Scene {
         const readyText = this.add.text(95, 270, 'Get ready for \nthe next level', { fontSize: '22px', fill: '#ffffff' });
 				readyText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 }); 
         this.time.delayedCall(300, () => {  
-          this.backgroundMusic.stop(); 
+         
+videoSprite.setLoop(true); // Enable video looping
+
           this.scene.stop('lvl1GameScene')
 			    this.scene.start('lvl2GameScene')  
         });   
