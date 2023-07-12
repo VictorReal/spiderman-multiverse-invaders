@@ -269,25 +269,22 @@ class lvl1GameScene extends Phaser.Scene {
 			if (gameState.score === 40) {
 				gameState.active = false;
 				this.physics.pause();
-       
-		gameState.websLoop.destroy();
+				gameState.websLoop.destroy();	
 
-    this.backgroundMusic.pause();
-    
-		gameState.score = 0;
-		gameState.lives = 5;
-		gameState.scoreText.setText(`Score: ${gameState.score}`);				
-    gameState.livesText.setText(`Lives: ${gameState.lives}`);
 				const winText = this.add.text(120, 240, 'You won!', { fontSize: '28px', fill: '#ffffff'  });
 				winText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
         const readyText = this.add.text(95, 270, 'Get ready for \nthe next level', { fontSize: '22px', fill: '#ffffff' });
 				readyText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 }); 
-        this.time.delayedCall(300, () => {  
-         
-videoSprite.setLoop(true); // Enable video looping
 
-          this.scene.stop('lvl1GameScene')
-			    this.scene.start('lvl2GameScene')  
+        this.time.delayedCall(3000, () => {   	
+					gameState.score = 0;
+					gameState.lives = 5;
+					gameState.scoreText.setText(`Score: ${gameState.score}`);				
+    			gameState.livesText.setText(`Lives: ${gameState.lives}`);      
+					this.backgroundMusic.stop();
+					this.musicPosition === 0;
+        	this.scene.stop('lvl1GameScene')
+					this.scene.start('lvl2GameStart')  
         });   
 			} else if (this.numOfTotalEnemies() === 0) {
 			} else {
