@@ -130,10 +130,10 @@ class lvl1GameScene extends Phaser.Scene {
 
 
 		const spidermen = ['spidy1', 'spidy2', 'spidy3', 'spidy1', 'spidy2', 'spidy3'];
-		let enemyCount = 5;
+		let enemyCount = 4;
 
 		function addEnemy() {
-			if (enemyCount < 45) {
+			if (enemyCount < 25) {
 				if (gameState.active) {
 					let availableEnemies = spidermen.slice();
 					gameState.enemies.getChildren().forEach(enemy => {
@@ -156,20 +156,20 @@ class lvl1GameScene extends Phaser.Scene {
 							});
 						} while (isTooClose);
 
-						if (gameState.score > 15 && !gameState.spawnedEnemy1) {
+						if (gameState.score > 4 && !gameState.spawnedEnemy1) {
 							const newEnemy1 = 'spider-woman';
 							availableEnemies.push(newEnemy1);
-							gameState.enemies.create(randomX, randomY, newEnemy1).setScale(0.09).setGravityY(-198);
+							gameState.enemies.create(randomX, randomY, newEnemy1).setScale(0.09).setGravityY(-195);
 							gameState.spawnedEnemy1 = true;
-						} else if (gameState.score > 25 && !gameState.spawnedEnemy2){
+						} else if (gameState.score > 9 && !gameState.spawnedEnemy2){
 							const newEnemy2 = 'scarlet-spider';
 							availableEnemies.push(newEnemy2);
-							gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.09).setGravityY(-199);
+							gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.09).setGravityY(-194);
 							gameState.spawnedEnemy2 = true;
-						} else if (gameState.score > 35 && !gameState.spawnedEnemy3) {
+						} else if (gameState.score > 14 && !gameState.spawnedEnemy3) {
 							const newEnemy3 = 'spider-man2099';
 							availableEnemies.push(newEnemy3);
-							gameState.enemies.create(randomX, randomY, newEnemy3).setScale(0.09).setGravityY(-196);
+							gameState.enemies.create(randomX, randomY, newEnemy3).setScale(0.09).setGravityY(-190);
 							gameState.spawnedEnemy3 = true;
 						} else {
 							const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);
@@ -266,7 +266,7 @@ class lvl1GameScene extends Phaser.Scene {
 				this.caught()
 			});
 
-			if (gameState.score === 40) {
+			if (gameState.score === 20) {
 				gameState.active = false;
 				this.physics.pause();
 				gameState.websLoop.destroy();	
@@ -278,12 +278,12 @@ class lvl1GameScene extends Phaser.Scene {
 
         this.time.delayedCall(3000, () => {   	
 					gameState.score = 0;
-					gameState.lives = 5;
+					gameState.lives = 3;
 					gameState.scoreText.setText(`Score: ${gameState.score}`);				
-    			gameState.livesText.setText(`Lives: ${gameState.lives}`);      
+    				gameState.livesText.setText(`Lives: ${gameState.lives}`);      
 					this.backgroundMusic.stop();
 					this.musicPosition === 0;
-        	this.scene.stop('lvl1GameScene')
+        			this.scene.stop('lvl1GameScene')
 					this.scene.start('lvl2GameStart')  
         });   
 			} else if (this.numOfTotalEnemies() === 0) {
@@ -332,7 +332,7 @@ class lvl1GameScene extends Phaser.Scene {
     this.backgroundMusic.pause();
     musicPosition = this.backgroundMusic.seek;
 		gameState.score = 0;
-		gameState.lives = 5;
+		gameState.lives = 3;
 		gameState.scoreText.setText(`Score: ${gameState.score}`);				
     gameState.livesText.setText(`Lives: ${gameState.lives}`);
 		const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });

@@ -1,6 +1,6 @@
 const gameState = {
   score: 0,
-  lives: 5,
+  lives: 3,
   isPaused: false,
 };
 let musicPosition = 0;
@@ -27,7 +27,7 @@ const config = {
       enableBody: true,
     },
   },
-  scene: [lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart, lvl2GameScene],
+  scene: [lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart, lvl2GameScene, lvl4GameScene],
   scale: {
     mode: Phaser.Scale.FIT,
   },

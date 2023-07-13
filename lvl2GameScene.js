@@ -258,13 +258,13 @@ class lvl2GameScene extends Phaser.Scene {
 
         this.time.delayedCall(3000, () => {   	
 					gameState.score = 0;
-					gameState.lives = 5;
+					gameState.lives = 3;
 					gameState.scoreText.setText(`Score: ${gameState.score}`);				
     			gameState.livesText.setText(`Lives: ${gameState.lives}`);      
 					this.backgroundMusic.stop();
 					this.musicPosition === 0;
         	this.scene.stop('lvl2GameScene')
-					this.scene.start('lvl1GameStart')  
+					this.scene.start('lvl4GameScene')  
         });   
 			} else if (this.numOfTotalEnemies() === 0) {
       } else {
@@ -311,7 +311,7 @@ class lvl2GameScene extends Phaser.Scene {
     this.backgroundMusic.pause();
     musicPosition = this.backgroundMusic.seek;
     gameState.score = 0;
-    gameState.lives = 5;
+    gameState.lives = 3;
     gameState.scoreText.setText(`Score: ${gameState.score}`);
     gameState.livesText.setText(`Lives: ${gameState.lives}`);
     const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
