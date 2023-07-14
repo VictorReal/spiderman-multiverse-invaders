@@ -2,8 +2,22 @@ body{
     background-color: black;
     margin: auto;
     color: whitesmoke;
-    margin-top: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
+
+.text {
+    background-color: #000000;
+    fill: #ffffff;
+    padding: 10px;
+  }
+  
+  .text:hover {
+    background-color: #1c87c9;
+    box-shadow: 0 0 10px #49e819;
+  }
+  
 /*
 
 

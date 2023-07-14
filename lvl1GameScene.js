@@ -38,7 +38,7 @@ class lvl1GameScene extends Phaser.Scene {
 	create() {
     gameState.active = true;
 		this.input.on('pointerup', () => {
-			if (gameState.active === false && gameState.score < 40) {
+			if (gameState.active === false && gameState.score < 20) {
 				this.scene.restart();
 			}
 		});
@@ -271,19 +271,21 @@ class lvl1GameScene extends Phaser.Scene {
 				this.physics.pause();
 				gameState.websLoop.destroy();	
 
-				const winText = this.add.text(120, 240, 'You won!', { fontSize: '28px', fill: '#ffffff'  });
-				winText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
-        const readyText = this.add.text(95, 270, 'Get ready for \nthe next level', { fontSize: '22px', fill: '#ffffff' });
-				readyText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 }); 
+				const winText = this.add.text(100, 240, 'You won!', { fontSize: '28px', fill: '#ffffff'  });
+				winText.setStyle({ backgroundColor: '#000000', fill: '#ffffff'});
+				winText.setPadding(3, 5);
+        const readyText = this.add.text(75, 270, 'Get ready for \nthe next level', { fontSize: '22px', fill: '#ffffff' });
+				readyText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' }); 
+				readyText.setPadding(3, 5);
 
         this.time.delayedCall(3000, () => {   	
 					gameState.score = 0;
-					gameState.lives = 3;
+					gameState.lives = 5;
 					gameState.scoreText.setText(`Score: ${gameState.score}`);				
-    				gameState.livesText.setText(`Lives: ${gameState.lives}`);      
+    			gameState.livesText.setText(`Lives: ${gameState.lives}`);      
 					this.backgroundMusic.stop();
 					this.musicPosition === 0;
-        			this.scene.stop('lvl1GameScene')
+        	this.scene.stop('lvl1GameScene')
 					this.scene.start('lvl2GameStart')  
         });   
 			} else if (this.numOfTotalEnemies() === 0) {
@@ -334,10 +336,12 @@ class lvl1GameScene extends Phaser.Scene {
 		gameState.score = 0;
 		gameState.lives = 3;
 		gameState.scoreText.setText(`Score: ${gameState.score}`);				
-    gameState.livesText.setText(`Lives: ${gameState.lives}`);
-		const catchedText = this.add.text(80, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
-		catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
-		const restartText = this.add.text(100, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
+    	gameState.livesText.setText(`Lives: ${gameState.lives}`);
+		const catchedText = this.add.text(60, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
+		catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
+		catchedText.setPadding(3, 5);
+		const restartText = this.add.text(80, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
 		restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
+		restartText.setPadding(3, 5);
   }
 }
