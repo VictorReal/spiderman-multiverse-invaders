@@ -39,7 +39,7 @@ class lvl4GameScene extends Phaser.Scene {
   create() {
 
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-      x: 100,
+      x: 150,
       y: 600,
       radius: 50,
       base: this.add.circle(0, 0, 50, 0x888888),
@@ -356,21 +356,16 @@ class lvl4GameScene extends Phaser.Scene {
     let cursorKeys = this.joyStick.createCursorKeys();
     
     // Set player velocity based on joystick input
-   if (cursorKeys.left.isDown) {
-    gameState.player.setVelocityX(-160);
-  } else if (cursorKeys.right.isDown) {
-    gameState.player.setVelocityX(160);
-  } else {
-    gameState.player.setVelocityX(0);
-  }
-
-  if (cursorKeys.up.isDown) {
-    gameState.player.setVelocityY(-160);
-  } else if (cursorKeys.down.isDown) {
-    gameState.player.setVelocityY(160);
-  } else {
-    gameState.player.setVelocityY(0);
-  }
+    if (cursorKeys.left.isDown) {
+      gameState.player.setVelocityX(-160);
+    } else if (cursorKeys.right.isDown) {
+      gameState.player.setVelocityX(160);
+    } else {
+      gameState.player.setVelocityX(0);
+    }
+    if (!gameState.isPaused && cursorKeys.space.isDown) {
+      gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
+    }
 
   
 
