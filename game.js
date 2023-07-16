@@ -27,7 +27,7 @@ const config = {
       enableBody: true,
     },
   },
-  scene: [/*lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart, lvl2GameScene, lvl4GameStart,*/ lvl4GameScene],
+  scene: [lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart, lvl2GameScene, /* lvl3GameStart, lvl3GameScene,*/ lvl4GameStart, lvl4GameScene, lvlEnding],
   scale: {
     mode: Phaser.Scale.FIT,
   },
@@ -35,9 +35,8 @@ const config = {
     antialias: true,
   },
   input: {
-    activePointers: 2, // Set the maximum number of touch points
-  },
-  
+    activePointers: 2,
+  },  
 };
 
 const game = new Phaser.Game(config);

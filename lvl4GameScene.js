@@ -79,10 +79,10 @@ class lvl4GameScene extends Phaser.Scene {
       thumb: this.add.circle(0, 0, 20, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
-		this.spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
+		const spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
 		.setInteractive()
 		.setAlpha(0.9);
-		this.spaceButton.on('pointerdown', () => {
+		spaceButton.on('pointerdown', () => {
       if (!gameState.isPaused) {
 			  gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
@@ -223,11 +223,6 @@ class lvl4GameScene extends Phaser.Scene {
 			}
       this.handleJoystickInput();
 
-    // Check for space button input
-    /*if (!gameState.isPaused && this.spaceButton.isDown) {
-      gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
-    }*/
-
       this.physics.add.collider(gameState.enemies, gameState.spiderReweb, (spider, reweb) => {
         spider.destroy();
         reweb.destroy();
@@ -256,7 +251,7 @@ class lvl4GameScene extends Phaser.Scene {
 					this.backgroundMusic.stop();
 					this.musicPosition === 0;
         	this.scene.stop('lvl4GameScene')
-					this.scene.start('lvl0GameStart')  
+					this.scene.start('Ending')  
         });   
 			} else if (this.numOfTotalEnemies() === 0) {
       } else {

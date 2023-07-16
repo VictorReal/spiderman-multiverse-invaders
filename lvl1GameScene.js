@@ -22,7 +22,11 @@ class lvl1GameScene extends Phaser.Scene {
 		this.load.image('scarlet-spider', './media/skins/scarlet-spider.png');
 		this.load.image('spider-man2099', './media/skins/spider-man2099.png');
 
-    this.load.audio('backgroundMusic1', './media/sounds/theme-lvl1.mp3');		
+    this.load.audio('backgroundMusic1', './media/sounds/theme-lvl1.mp3');	
+    
+    let url;
+    url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
+    this.load.plugin('rexvirtualjoystickplugin', url, true);
 	}
 
 	sortedEnemies() {
@@ -64,36 +68,20 @@ class lvl1GameScene extends Phaser.Scene {
 		gameState.player = this.physics.add.sprite(200, 460, 'miles').setScale(0.12);
 
 		gameState.player.setCollideWorldBounds(true);
-		this.physics.add.collider(gameState.player, platforms);
+    this.physics.add.collider(gameState.player, platforms);
 
-		gameState.cursors = this.input.keyboard.createCursorKeys();
+    gameState.enemies = this.physics.add.group();
+    gameState.spiderReweb = this.physics.add.group(); 
 
-		gameState.enemies = this.physics.add.group();
-		gameState.spiderReweb = this.physics.add.group();
-
-		const leftButton = this.add.image(40, 570, 'leftButton')
-			.setInteractive()
-			.setAlpha(0.9);
-		leftButton.on('pointerdown', () => {
-			gameState.player.setVelocityX(-1300);
-		});
-		leftButton.on('pointerup', () => {
-			if (gameState.player.body.velocity.x < 0) {
-				gameState.player.setVelocityX(0);
-			}
-		});
-
-		const rightButton = this.add.image(110, 570, 'rightButton')
-			.setInteractive()
-			.setAlpha(0.9);
-		rightButton.on('pointerdown', () => {
-			gameState.player.setVelocityX(1300);
-		});
-		rightButton.on('pointerup', () => {
-			if (gameState.player.body.velocity.x > 0) {
-				gameState.player.setVelocityX(0);
-			}
-		});
+    gameState.cursors = this.input.keyboard.createCursorKeys();
+    
+    this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
+      x: 70,
+      y: 590,
+      radius: 40,
+      base: this.add.circle(0, 0, 40, 0x888888),
+      thumb: this.add.circle(0, 0, 20, 0xcccccc),
+    }).on('update', this.handleJoystickInput, this);
 
 		const spaceButton = this.add.image(buttonX - 50, 565, 'spaceButton')
 			.setInteractive()
@@ -254,6 +242,7 @@ class lvl1GameScene extends Phaser.Scene {
 				  gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
         }
 			}
+      this.handleJoystickInput();
 
 			this.physics.add.collider(gameState.enemies, gameState.spiderReweb, (spider, reweb) => {
 				spider.destroy();
@@ -327,6 +316,7 @@ class lvl1GameScene extends Phaser.Scene {
 			this.pauseText = null;
 		}
 	}
+
   caught(){
     gameState.active = false;
 		gameState.websLoop.destroy();
@@ -343,5 +333,20 @@ class lvl1GameScene extends Phaser.Scene {
 		const restartText = this.add.text(80, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
 		restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
 		restartText.setPadding(3, 5);
+  }
+  
+  handleJoystickInput() {
+    let cursorKeys = this.joyStick.createCursorKeys();
+    const isKeyboardInput = gameState.cursors.left.isDown || gameState.cursors.right.isDown;
+    
+    if (!isKeyboardInput) {
+      if (cursorKeys.left.isDown) {
+        gameState.player.setVelocityX(-160);
+      } else if (cursorKeys.right.isDown) {
+        gameState.player.setVelocityX(160);
+      } else {
+        gameState.player.setVelocityX(0);
+      }
+    }
   }
 }

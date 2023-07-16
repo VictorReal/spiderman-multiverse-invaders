@@ -5,7 +5,7 @@ class lvl0GameStart extends Phaser.Scene {
 
 	preload() {
 		this.load.image('poster', './media/general/poster.jpg');
-		this.load.audio('backgroundMusic0', './media/sounds/thememenu.mp3');   
+		this.load.audio('backgroundMusic0', './media/sounds/theme opening.mp3');   
     this.load.image('musicButton', './media/general/btn-music.svg'); 		
 	}
 
@@ -16,7 +16,7 @@ class lvl0GameStart extends Phaser.Scene {
     const background = this.add.image(-10, 40, 'poster');
 		background.setOrigin(0, 0);
 		background.setScale(0.5);
-    
+
     const pauseText = this.add.text(40, 505, '', { fontSize: '18px'});
     pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
     pauseText.setInteractive();
