@@ -108,12 +108,15 @@ class lvl4GameScene extends Phaser.Scene {
 			}
 		});
 */
+gameState.cursorKeys = this.input.keyboard.createCursorKeys();
 		this.spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9);
 		this.spaceButton.on('pointerdown', () => {
       if (!gameState.isPaused) {
 			gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
+      } else if (cursorKeys.left.isDown){
+        gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
 		});
     
