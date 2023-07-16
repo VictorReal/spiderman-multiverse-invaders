@@ -20,8 +20,7 @@ class lvl4GameScene extends Phaser.Scene {
 
 		this.load.audio('backgroundMusic4', './media/sounds/theme-lvl4.mp3');
 
-    var url;
-  
+    let url;
     url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
     this.load.plugin('rexvirtualjoystickplugin', url, true);
 	}
@@ -37,18 +36,6 @@ class lvl4GameScene extends Phaser.Scene {
   };
 
   create() {
-
-    this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-      x: 70,
-      y: 590,
-      radius: 40,
-      base: this.add.circle(0, 0, 40, 0x888888),
-      thumb: this.add.circle(0, 0, 20, 0xcccccc),
-    }).on('update', this.handleJoystickInput, this);
-
-
-
-
     gameState.active = true;
     this.input.on('pointerup', () => {
       if (gameState.active === false && gameState.score < 10) {
@@ -79,41 +66,25 @@ class lvl4GameScene extends Phaser.Scene {
     gameState.player.setCollideWorldBounds(true);
     this.physics.add.collider(gameState.player, platforms);
 
-    gameState.cursors = this.input.keyboard.createCursorKeys();
-
     gameState.enemies = this.physics.add.group();
-    gameState.spiderReweb = this.physics.add.group();
-/*
-    const leftButton = this.add.image(40, 570, 'leftButton')
-			.setInteractive()
-			.setAlpha(0.9);
-		leftButton.on('pointerdown', () => {
-			gameState.player.setVelocityX(-1300);
-		});
-		leftButton.on('pointerup', () => {
-			if (gameState.player.body.velocity.x < 0) {
-				gameState.player.setVelocityX(0);
-			}
-		});
+    gameState.spiderReweb = this.physics.add.group(); 
 
-		const rightButton = this.add.image(110, 570, 'rightButton')
-			.setInteractive()
-			.setAlpha(0.9);
-		rightButton.on('pointerdown', () => {
-			gameState.player.setVelocityX(1300);
-		});
-		rightButton.on('pointerup', () => {
-			if (gameState.player.body.velocity.x > 0) {
-				gameState.player.setVelocityX(0);
-			}
-		});
-*/
+    gameState.cursors = this.input.keyboard.createCursorKeys();
+    
+    this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
+      x: 70,
+      y: 590,
+      radius: 40,
+      base: this.add.circle(0, 0, 40, 0x888888),
+      thumb: this.add.circle(0, 0, 20, 0xcccccc),
+    }).on('update', this.handleJoystickInput, this);
+
 		this.spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
-			.setInteractive()
-			.setAlpha(0.9);
+		.setInteractive()
+		.setAlpha(0.9);
 		this.spaceButton.on('pointerdown', () => {
       if (!gameState.isPaused) {
-			gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
+			  gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
 		});
     
@@ -341,6 +312,7 @@ class lvl4GameScene extends Phaser.Scene {
       this.pauseText = null;
     }
   }
+  
   caught(){
     gameState.active = false;
 		gameState.websLoop.destroy();
@@ -358,21 +330,19 @@ class lvl4GameScene extends Phaser.Scene {
     restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
     restartText.setPadding(3, 5);
   }
+
   handleJoystickInput() {
-  let cursorKeys = this.joyStick.createCursorKeys();
-
-  // Check if any keyboard keys are being pressed
-  const isKeyboardInput = gameState.cursors.left.isDown || gameState.cursors.right.isDown;
-
-  // Set player velocity based on joystick input only if no keyboard input detected
-  if (!isKeyboardInput) {
-    if (cursorKeys.left.isDown) {
-      gameState.player.setVelocityX(-160);
-    } else if (cursorKeys.right.isDown) {
-      gameState.player.setVelocityX(160);
-    } else {
-      gameState.player.setVelocityX(0);
+    let cursorKeys = this.joyStick.createCursorKeys();
+    const isKeyboardInput = gameState.cursors.left.isDown || gameState.cursors.right.isDown;
+    
+    if (!isKeyboardInput) {
+      if (cursorKeys.left.isDown) {
+        gameState.player.setVelocityX(-160);
+      } else if (cursorKeys.right.isDown) {
+        gameState.player.setVelocityX(160);
+      } else {
+        gameState.player.setVelocityX(0);
+      }
     }
-  }}
+  }
 }
-
