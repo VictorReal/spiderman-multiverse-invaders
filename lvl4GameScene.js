@@ -39,7 +39,7 @@ class lvl4GameScene extends Phaser.Scene {
   create() {
 
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-      x: 170,
+      x: 70,
       y: 590,
       radius: 40,
       base: this.add.circle(0, 0, 40, 0x888888),
@@ -108,17 +108,14 @@ class lvl4GameScene extends Phaser.Scene {
 			}
 		});
 */
-gameState.cursorKeys = this.input.keyboard.createCursorKeys();
-
-		this.spaceButton = this.add.image(buttonX - 80, 580, 'spaceButton')
+		this.spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9);
 		this.spaceButton.on('pointerdown', () => {
-      if (!gameState.isPaused && (gameState.cursors.left.isDown || gameState.cursors.right.isDown ||
-        gameState.joyStick.left || gameState.joyStick.right)) {
-        gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
+      if (!gameState.isPaused) {
+			gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
-    });
+		});
     
     const musicButton = this.add.image(30, 20, 'musicButton')
     .setInteractive()
@@ -256,9 +253,9 @@ gameState.cursorKeys = this.input.keyboard.createCursorKeys();
       this.handleJoystickInput();
 
     // Check for space button input
-    if (!gameState.isPaused && this.spaceButton.isDown) {
+    /*if (!gameState.isPaused && this.spaceButton.isDown) {
       gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
-    }
+    }*/
 
       this.physics.add.collider(gameState.enemies, gameState.spiderReweb, (spider, reweb) => {
         spider.destroy();

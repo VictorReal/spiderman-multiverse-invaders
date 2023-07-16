@@ -34,6 +34,9 @@ const config = {
   render: {
     antialias: true,
   },
+  input: {
+    activePointers: 2, // Set the maximum number of touch points
+  },
   
 };
 
