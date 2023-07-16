@@ -108,10 +108,10 @@ class lvl4GameScene extends Phaser.Scene {
 			}
 		});
 */
-		const spaceButton = this.add.image(buttonX - 50, 565, 'spaceButton')
+		this.spaceButton = this.add.image(buttonX - 50, 565, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9);
-		spaceButton.on('pointerdown', () => {
+		this.spaceButton.on('pointerdown', () => {
       if (!gameState.isPaused) {
 			gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
@@ -250,6 +250,12 @@ class lvl4GameScene extends Phaser.Scene {
 				  gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
         }
 			}
+      this.handleJoystickInput();
+
+    // Check for space button input
+    if (!gameState.isPaused && this.spaceButton.isDown) {
+      gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
+    }
 
       this.physics.add.collider(gameState.enemies, gameState.spiderReweb, (spider, reweb) => {
         spider.destroy();
@@ -353,9 +359,13 @@ class lvl4GameScene extends Phaser.Scene {
     restartText.setPadding(3, 5);
   }
   handleJoystickInput() {
-    let cursorKeys = this.joyStick.createCursorKeys();
-    
-    // Set player velocity based on joystick input
+  let cursorKeys = this.joyStick.createCursorKeys();
+
+  // Check if any keyboard keys are being pressed
+  const isKeyboardInput = gameState.cursors.left.isDown || gameState.cursors.right.isDown;
+
+  // Set player velocity based on joystick input only if no keyboard input detected
+  if (!isKeyboardInput) {
     if (cursorKeys.left.isDown) {
       gameState.player.setVelocityX(-160);
     } else if (cursorKeys.right.isDown) {
@@ -363,14 +373,6 @@ class lvl4GameScene extends Phaser.Scene {
     } else {
       gameState.player.setVelocityX(0);
     }
-    if (!gameState.isPaused && cursorKeys.space.isDown) {
-      gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
-    }
-
-  
-
-  
-
-  }
+  }}
 }
 
