@@ -39,11 +39,11 @@ class lvl4GameScene extends Phaser.Scene {
   create() {
 
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-      x: 150,
-      y: 600,
-      radius: 50,
-      base: this.add.circle(0, 0, 50, 0x888888),
-      thumb: this.add.circle(0, 0, 25, 0xcccccc),
+      x: 70,
+      y: 590,
+      radius: 40,
+      base: this.add.circle(0, 0, 40, 0x888888),
+      thumb: this.add.circle(0, 0, 20, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
 
@@ -108,7 +108,7 @@ class lvl4GameScene extends Phaser.Scene {
 			}
 		});
 */
-		this.spaceButton = this.add.image(buttonX - 50, 565, 'spaceButton')
+		this.spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9);
 		this.spaceButton.on('pointerdown', () => {
