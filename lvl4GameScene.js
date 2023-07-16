@@ -114,12 +114,10 @@ gameState.cursorKeys = this.input.keyboard.createCursorKeys();
 			.setInteractive()
 			.setAlpha(0.9);
 		this.spaceButton.on('pointerdown', () => {
-      if (!gameState.isPaused) {
-			gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
-      } else if (cursorKeys.left.isDown && !gameState.isPaused){
+      if (!gameState.isPaused && (gameState.cursors.left.isDown || gameState.cursors.right.isDown)) {
         gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
-		});
+    });
     
     const musicButton = this.add.image(30, 20, 'musicButton')
     .setInteractive()
