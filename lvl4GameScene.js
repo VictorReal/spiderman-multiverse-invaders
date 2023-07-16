@@ -19,6 +19,11 @@ class lvl4GameScene extends Phaser.Scene {
 		this.load.image('spotPortal', './media/skins/spot-portal.png')
 
 		this.load.audio('backgroundMusic4', './media/sounds/theme-lvl4.mp3');
+
+    var url;
+  
+    url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
+    this.load.plugin('rexvirtualjoystickplugin', url, true);
 	}
 
 	sortedEnemies() {
@@ -32,6 +37,18 @@ class lvl4GameScene extends Phaser.Scene {
   };
 
   create() {
+
+    this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
+      x: 100,
+      y: 600,
+      radius: 50,
+      base: this.add.circle(0, 0, 50, 0x888888),
+      thumb: this.add.circle(0, 0, 25, 0xcccccc),
+    }).on('update', this.handleJoystickInput, this);
+
+
+
+
     gameState.active = true;
     this.input.on('pointerup', () => {
       if (gameState.active === false && gameState.score < 10) {
@@ -66,7 +83,7 @@ class lvl4GameScene extends Phaser.Scene {
 
     gameState.enemies = this.physics.add.group();
     gameState.spiderReweb = this.physics.add.group();
-
+/*
     const leftButton = this.add.image(40, 570, 'leftButton')
 			.setInteractive()
 			.setAlpha(0.9);
@@ -90,7 +107,7 @@ class lvl4GameScene extends Phaser.Scene {
 				gameState.player.setVelocityX(0);
 			}
 		});
-
+*/
 		const spaceButton = this.add.image(buttonX - 50, 565, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9);
@@ -245,7 +262,7 @@ class lvl4GameScene extends Phaser.Scene {
         this.caught()
       });
 
-      if (gameState.score === 1) {
+      if (gameState.score === 10) {
 				gameState.active = false;
 				this.physics.pause();
         gameState.websLoop.destroy();
@@ -335,4 +352,30 @@ class lvl4GameScene extends Phaser.Scene {
     restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
     restartText.setPadding(3, 5);
   }
+  handleJoystickInput() {
+    let cursorKeys = this.joyStick.createCursorKeys();
+    
+    // Set player velocity based on joystick input
+   if (cursorKeys.left.isDown) {
+    gameState.player.setVelocityX(-160);
+  } else if (cursorKeys.right.isDown) {
+    gameState.player.setVelocityX(160);
+  } else {
+    gameState.player.setVelocityX(0);
+  }
+
+  if (cursorKeys.up.isDown) {
+    gameState.player.setVelocityY(-160);
+  } else if (cursorKeys.down.isDown) {
+    gameState.player.setVelocityY(160);
+  } else {
+    gameState.player.setVelocityY(0);
+  }
+
+  
+
+  
+
+  }
 }
+
