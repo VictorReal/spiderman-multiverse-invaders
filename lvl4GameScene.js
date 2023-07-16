@@ -110,7 +110,7 @@ class lvl4GameScene extends Phaser.Scene {
 */
 gameState.cursorKeys = this.input.keyboard.createCursorKeys();
 
-		this.spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
+		this.spaceButton = this.add.image(buttonX - 80, 580, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9);
 		this.spaceButton.on('pointerdown', () => {
