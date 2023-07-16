@@ -39,7 +39,7 @@ class lvl4GameScene extends Phaser.Scene {
   create() {
 
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-      x: 70,
+      x: 170,
       y: 590,
       radius: 40,
       base: this.add.circle(0, 0, 40, 0x888888),
