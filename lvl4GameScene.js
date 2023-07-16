@@ -114,7 +114,8 @@ gameState.cursorKeys = this.input.keyboard.createCursorKeys();
 			.setInteractive()
 			.setAlpha(0.9);
 		this.spaceButton.on('pointerdown', () => {
-      if (!gameState.isPaused && (gameState.cursors.left.isDown || gameState.cursors.right.isDown)) {
+      if (!gameState.isPaused && (gameState.cursors.left.isDown || gameState.cursors.right.isDown ||
+        gameState.joyStick.left || gameState.joyStick.right)) {
         gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
     });
