@@ -77,21 +77,7 @@ class lvl4GameScene extends Phaser.Scene {
       radius: 40,
       base: this.add.circle(0, 0, 40, 0x888888),
       thumb: this.add.circle(0, 0, 20, 0xcccccc),
-  }).on('update', () => {
-      let cursorKeys = this.joyStick.createCursorKeys();
-      const isKeyboardInput = gameState.cursors.left.isDown || gameState.cursors.right.isDown;
-
-      
-      if (!isKeyboardInput) {
-        if (cursorKeys.left.isDown) {
-            gameState.player.setVelocityX(-160);
-        } else if (cursorKeys.right.isDown) {
-            gameState.player.setVelocityX(160);
-        } else {
-            gameState.player.setVelocityX(0);
-        }
-    }
-}, this); 
+    }).on('update', this.handleJoystickInput, this);
 
 		const spaceButton = this.add.image(buttonX - 50, 580, 'spaceButton')
 		.setInteractive()
@@ -222,8 +208,20 @@ class lvl4GameScene extends Phaser.Scene {
 
   update() {
     if (gameState.active) {
-      
-   
+      if (gameState.cursors.left.isDown) {
+        gameState.player.setVelocityX(-160);
+      } else if (gameState.cursors.right.isDown) {
+        gameState.player.setVelocityX(160);
+      } else {
+        gameState.player.setVelocityX(0);
+      }
+
+      if (Phaser.Input.Keyboard.JustDown(gameState.cursors.space)) {
+        if (!gameState.isPaused) {
+				  gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
+        }
+			}
+      this.handleJoystickInput();
 
       this.physics.add.collider(gameState.enemies, gameState.spiderReweb, (spider, reweb) => {
         spider.destroy();
@@ -328,5 +326,18 @@ class lvl4GameScene extends Phaser.Scene {
     restartText.setPadding(3, 5);
   }
 
-  
+  handleJoystickInput() {
+    let cursorKeys = this.joyStick.createCursorKeys();
+    const isKeyboardInput = gameState.cursors.left.isDown || gameState.cursors.right.isDown;
+    
+    if (!isKeyboardInput) {
+      if (cursorKeys.left.isDown) {
+        gameState.player.setVelocityX(-160);
+      } else if (cursorKeys.right.isDown) {
+        gameState.player.setVelocityX(160);
+      } else {
+        gameState.player.setVelocityX(0);
+      }
+    }
+  }
 }
