@@ -215,12 +215,12 @@ class lvl4GameScene extends Phaser.Scene {
       } else {
         gameState.player.setVelocityX(0);
       }
-
+/*
       if (Phaser.Input.Keyboard.JustDown(gameState.cursors.space)) {
         if (!gameState.isPaused) {
 				  gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
         }
-			}
+			}*/
       this.handleJoystickInput();
 
       this.physics.add.collider(gameState.enemies, gameState.spiderReweb, (spider, reweb) => {
