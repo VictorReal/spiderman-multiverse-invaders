@@ -121,7 +121,7 @@ class lvl1GameScene extends Phaser.Scene {
 		let enemyCount = 4;
 
 		function addEnemy() {
-			if (enemyCount < 25) {
+			if (enemyCount < 65) {
 				if (gameState.active) {
 					let availableEnemies = spidermen.slice();
 					gameState.enemies.getChildren().forEach(enemy => {
