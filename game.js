@@ -2,6 +2,9 @@ const gameState = {
   score: 0,
   lives: 3,
   isPaused: false,
+  
+  speed: 240,
+  ups: 380,
 };
 let musicPosition = 0;
 
@@ -27,7 +30,7 @@ const config = {
       enableBody: true,
     },
   },
-  scene: [/*lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart, lvl2GameScene, */ lvl3GameStart, lvl3GameScene,lvl4GameStart,  lvl4GameScene, lvlEnding],
+  scene: [lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart1, lvl2GameScene1, lvl2GameStart2, lvl2GameScene2,lvl3GameStart, lvl3GameScene1,   lvl3GameScene2,  lvl3GameScene3, lvl4GameStart, lvl4GameScene,lvlEnding],
   scale: {
     mode: Phaser.Scale.FIT,
   },

@@ -275,7 +275,7 @@ class lvl1GameScene extends Phaser.Scene {
 					this.backgroundMusic.stop();
 					this.musicPosition === 0;
         	this.scene.stop('lvl1GameScene')
-					this.scene.start('lvl2GameStart')  
+					this.scene.start('lvl2GameStart1')  
         });   
 			} else if (this.numOfTotalEnemies() === 0) {
 			} else {

@@ -3,46 +3,39 @@ class lvlEnding extends Phaser.Scene {
 		super({ key: 'lvlEnding' });
 	}
 
-	preload() {/*
-		this.load.image('poster', './media/general/poster.jpg');
-		this.load.audio('backgroundMusic0', './media/sounds/theme opening.mp3');   
-    this.load.image('musicButton', './media/general/btn-music.svg'); 		*/
+	preload() {
+    this.load.video('ending1', './media/videos/ending-1.mp4');
+    this.load.video('ending2', './media/videos/ending-2.mp4');
+		this.load.audio('endingTheme1', './media/sounds/theme-lvl2-1.mp3');  
+    this.load.audio('endingTheme2', './media/sounds/theme-lvl4.mp3');  
 	}
 
-	create() { /*
-		this.backgroundMusic = this.sound.add('backgroundMusic0', { loop: true });
-    this.backgroundMusic.play();
+	create() {
+		this.endingTheme1 = this.sound.add('endingTheme1', { loop: true });    
+    this.endingTheme1.play();
 
-    const background = this.add.image(-10, 40, 'poster');
-		background.setOrigin(0, 0);
-		background.setScale(0.5);
+    this.endingTheme2 = this.sound.add('endingTheme2', { loop: true });     
+   
+    const screenWidth = this.scale.width / 2;
+    const videoSprite1 = this.add.video(screenWidth, 300, 'ending1').setScale(0.19);
+    videoSprite1.play(true);
+    videoSprite1.setLoop(false);
+    gameState.thankText = this.add.text(80, 120, `Thanks for playing!`, { fontSize: '20px', fill: '#ffffff' });
+    gameState.finelText = this.add.text(120, 420, `The End!  `, { fontSize: '30px', fill: '#ffffff' });
 
-    const pauseText = this.add.text(40, 505, '', { fontSize: '18px'});
-    pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
-    pauseText.setInteractive();
-    pauseText.setPadding(3, 5);
-    pauseText.setAlign('center');
-    pauseText.setText([
-      'Click here',
-      'to Start Your Adventure'
-    ]);
-	  pauseText.on('pointerdown', () => {
-      this.backgroundMusic.stop();
-			this.musicPosition === 0;
-			this.scene.stop()
-			this.scene.start('lvl1GameStart')
-    });
+    
 
-    const musicButton = this.add.image(30, 20, 'musicButton')
-    .setInteractive()
-    .setAlpha(0.9)
-    .setScale(0.2);
-    musicButton.on('pointerdown', () => {
-      if (this.backgroundMusic.isPaused) {
-        this.backgroundMusic.resume();
-      } else {
-        this.backgroundMusic.pause();
-      }
-    });*/
+
+    videoSprite1.on('complete', function () {
+      this.endingTheme1.pause();
+      musicPosition = this.endingTheme1.seek;
+      videoSprite1.destroy();
+      this.endingTheme2.play({ seek: musicPosition });
+      
+      const videoSprite2 = this.add.video(screenWidth, 280, 'ending2').setScale(0.8);
+      videoSprite2.play(true);
+      videoSprite2.setLoop(true);
+      gameState.finelText = this.add.text(120, 420, `The End!??`, { fontSize: '30px', fill: '#ffffff' });
+    }, this);
 	}
 }

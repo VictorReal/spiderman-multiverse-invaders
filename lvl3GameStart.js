@@ -21,7 +21,7 @@ class lvl3GameStart extends Phaser.Scene {
       this.backgroundMusic.pause();
       musicPosition = this.backgroundMusic.seek;
       this.scene.stop(); 
-      this.scene.start('lvl3GameScene');
+      this.scene.start('lvl3GameScene1');
     }, this);
 	}
 }
