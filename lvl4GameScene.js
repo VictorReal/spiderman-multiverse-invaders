@@ -117,7 +117,7 @@ class lvl4GameScene extends Phaser.Scene {
     let enemyCount = 1;
 
     function addEnemy() {
-      if (enemyCount < 25) {
+      if (enemyCount < 45) {
         const randomX = Math.random() * 300 + 25;
         const randomY = Math.random() * 100 + 85;
   
