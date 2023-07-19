@@ -249,7 +249,7 @@ class lvl2GameScene2 extends Phaser.Scene {
 
         this.time.delayedCall(3000, () => {   	
 					gameState.score = 0;
-					gameState.lives = 5;
+					gameState.lives = 1;
 					gameState.scoreText.setText(`Score: ${gameState.score}`);				
     			gameState.livesText.setText(`Lives: ${gameState.lives}`);      
 					this.backgroundMusic.stop();

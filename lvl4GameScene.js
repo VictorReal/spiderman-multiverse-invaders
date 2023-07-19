@@ -38,7 +38,7 @@ class lvl4GameScene extends Phaser.Scene {
   create() {
     gameState.active = true;
     this.input.on('pointerup', () => {
-      if (gameState.active === false && gameState.score < 10) {
+      if (gameState.active === false && gameState.score < 5) {
 				this.scene.restart();
       }
     });
@@ -234,7 +234,7 @@ class lvl4GameScene extends Phaser.Scene {
         this.caught()
       });
 
-      if (gameState.score === 10) {
+      if (gameState.score === 5) {
 				gameState.active = false;
 				this.physics.pause();
         gameState.websLoop.destroy();
@@ -251,7 +251,7 @@ class lvl4GameScene extends Phaser.Scene {
 					this.backgroundMusic.stop();
 					this.musicPosition === 0;
         	this.scene.stop('lvl4GameScene')
-					this.scene.start('Ending')  
+					this.scene.start('lvlEnding')  
         });   
 			} else if (this.numOfTotalEnemies() === 0) {
       } else {
