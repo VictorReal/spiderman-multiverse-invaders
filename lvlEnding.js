@@ -23,9 +23,6 @@ class lvlEnding extends Phaser.Scene {
     gameState.thankText = this.add.text(80, 120, `Thanks for playing!`, { fontSize: '20px', fill: '#ffffff' });
     gameState.finelText = this.add.text(120, 420, `The End!  `, { fontSize: '30px', fill: '#ffffff' });
 
-    
-
-
     videoSprite1.on('complete', function () {
       this.endingTheme1.pause();
       musicPosition = this.endingTheme1.seek;
