@@ -17,6 +17,18 @@ body{
     background-color: #1c87c9;
     box-shadow: 0 0 10px #49e819;
   }
+  #gameContainer {
+    width: 800px;
+    height: 1200px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #gameCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   
 /*
 
