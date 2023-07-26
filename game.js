@@ -12,7 +12,7 @@ let musicPosition = 0;
   
 function newWidth(){
   if(window.innerWidth < 850){
-    return 864
+    return 884
   }else{
     return 350
   } 
