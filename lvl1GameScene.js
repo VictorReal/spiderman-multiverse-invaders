@@ -83,7 +83,7 @@ class lvl1GameScene extends Phaser.Scene {
       thumb: this.add.circle(0, 0, 40, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
-		const spaceButton = this.add.image(buttonX - 110, 1390, 'spaceButton')
+		const spaceButton = this.add.image(buttonX - 110, 1590, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9)
 			.setScale(2.5);
