@@ -56,16 +56,16 @@ class lvl1GameScene extends Phaser.Scene {
 
 		const background = this.add.image(0, 90, 'bg1');
 		background.setOrigin(0, 0);
-		background.setScale(1.4);
+		background.setScale(1.48);
 
 		const buttonX = newWidth();
 
 		const platforms = this.physics.add.staticGroup();
-		platforms.create(400, 1230, 'platform').setScale(2, 0.6).refreshBody();
-		gameState.scoreText = this.add.text(20, 1220, `Score: ${gameState.score}`, { fontSize: '38px', fill: '#ffffff' });
-		gameState.livesText = this.add.text(buttonX - 200, 1220, `Lives: ${gameState.lives}`, { fontSize: '38px', fill: '#ffffff' });
+		platforms.create(400, 1330, 'platform').setScale(2, 0.6).refreshBody();
+		gameState.scoreText = this.add.text(20, 1320, `Score: ${gameState.score}`, { fontSize: '38px', fill: '#ffffff' });
+		gameState.livesText = this.add.text(buttonX - 200, 1320, `Lives: ${gameState.lives}`, { fontSize: '38px', fill: '#ffffff' });
 
-		gameState.player = this.physics.add.sprite(400, 1100, 'miles').setScale(0.2);
+		gameState.player = this.physics.add.sprite(400, 1200, 'miles').setScale(0.2);
 
 		gameState.player.setCollideWorldBounds(true);
     this.physics.add.collider(gameState.player, platforms);
@@ -77,13 +77,13 @@ class lvl1GameScene extends Phaser.Scene {
     
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
       x: 130,
-      y: 1400,
+      y: 1500,
       radius: 80,
       base: this.add.circle(0, 0, 80, 0x888888),
       thumb: this.add.circle(0, 0, 40, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
-		const spaceButton = this.add.image(buttonX - 110, 1590, 'spaceButton')
+		const spaceButton = this.add.image(buttonX - 110, 1490, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9)
 			.setScale(2.5);
@@ -135,8 +135,8 @@ class lvl1GameScene extends Phaser.Scene {
 						let randomX, randomY;
 						let isTooClose;
 						do {
-							randomX = Math.random() * 600 + 25;
-							randomY = Math.random() * 150 + 150;
+							randomX = Math.random() * 700 + 25;
+							randomY = Math.random() * 150 + 200;
 							const proximityThreshold = 100;
 
 							isTooClose = gameState.enemies.getChildren().some(enemy => {
@@ -173,8 +173,8 @@ class lvl1GameScene extends Phaser.Scene {
 		for (let i = 0; i < enemyCount; i++) {
 			let randomX, randomY;
 			do {
-				randomX = Math.random() * 600 + 25;
-				randomY = Math.random() * 250 + 150;
+				randomX = Math.random() * 700 + 25;
+				randomY = Math.random() * 150 + 200;
 				const proximityThreshold = 100;
 
 				const isTooClose = gameState.enemies.getChildren().some(enemy => {
@@ -282,7 +282,7 @@ class lvl1GameScene extends Phaser.Scene {
 			} else {
 				gameState.enemies.getChildren().forEach(spider => {
 					spider.x += gameState.enemyVelocity;
-					if (spider.y >= 1200) {
+					if (spider.y >= 1300) {
             this.caught()
 					}
 				});
@@ -290,7 +290,7 @@ class lvl1GameScene extends Phaser.Scene {
 				gameState.leftMostSpider = this.sortedEnemies()[0];
 				gameState.rightMostSpider = this.sortedEnemies()[this.sortedEnemies().length - 1];
 
-				if (gameState.leftMostSpider.x < 40 || gameState.rightMostSpider.x > 770) {
+				if (gameState.leftMostSpider.x < 50 || gameState.rightMostSpider.x > 850) {
 					gameState.enemyVelocity *= -1;
 				}
 			}
@@ -309,7 +309,7 @@ class lvl1GameScene extends Phaser.Scene {
 	resumeGame() {
 		gameState.isPaused = false;
 		gameState.websLoop.paused = false;
-    gameState.enemyVelocity = 0.6
+    gameState.enemyVelocity = 0.7
 		gameState.player.setVelocity(0);
 		this.physics.resume();
     if (this.pauseText) {
@@ -328,12 +328,14 @@ class lvl1GameScene extends Phaser.Scene {
 		gameState.lives = 3;
 		gameState.scoreText.setText(`Score: ${gameState.score}`);				
     	gameState.livesText.setText(`Lives: ${gameState.lives}`);
-		const catchedText = this.add.text(110, 600, 'They caught you!', { fontSize: '62px', fill: '#ffffff' });
+		const catchedText = this.add.text(150, 600, '', { fontSize: '62px'});
 		catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
 		catchedText.setPadding(3, 5);
-		const restartText = this.add.text(150, 660, 'Click to restart', { fontSize: '52px', fill: '#ffffff' });
-		restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
-		restartText.setPadding(3, 5);
+		catchedText.setAlign('center');
+		catchedText.setText([
+			'They caught you!',
+			'Click to restart'
+		]);
   }
   
   handleJoystickInput() {
