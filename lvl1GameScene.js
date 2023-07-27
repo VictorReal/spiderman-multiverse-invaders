@@ -61,9 +61,9 @@ class lvl1GameScene extends Phaser.Scene {
 		const buttonX = newWidth();
 
 		const platforms = this.physics.add.staticGroup();
-		platforms.create(400, 1330, 'platform').setScale(2, 0.6).refreshBody();
-		gameState.scoreText = this.add.text(20, 1320, `Score: ${gameState.score}`, { fontSize: '38px', fill: '#ffffff' });
-		gameState.livesText = this.add.text(buttonX - 200, 1320, `Lives: ${gameState.lives}`, { fontSize: '38px', fill: '#ffffff' });
+		platforms.create(450, 1310, 'platform').setScale(2.2, 0.6).refreshBody();
+		gameState.scoreText = this.add.text(20, 1300, `Score: ${gameState.score}`, { fontSize: '38px', fill: '#ffffff' });
+		gameState.livesText = this.add.text(buttonX - 200, 1300, `Lives: ${gameState.lives}`, { fontSize: '38px', fill: '#ffffff' });
 
 		gameState.player = this.physics.add.sprite(400, 1200, 'miles').setScale(0.2);
 
@@ -77,13 +77,13 @@ class lvl1GameScene extends Phaser.Scene {
     
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
       x: 130,
-      y: 1500,
+      y: 1460,
       radius: 80,
       base: this.add.circle(0, 0, 80, 0x888888),
       thumb: this.add.circle(0, 0, 40, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
-		const spaceButton = this.add.image(buttonX - 110, 1490, 'spaceButton')
+		const spaceButton = this.add.image(buttonX - 110, 1450, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9)
 			.setScale(2.5);

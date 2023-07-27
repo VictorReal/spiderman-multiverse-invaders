@@ -4,7 +4,7 @@ class lvl2GameScene1 extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image('miles', './media/skins/miles.png');
+		this.load.image('miles', './media/skins/smiles.png');
 		this.load.image('spiderReweb', './media/general/spiderReweb.png');
 		this.load.image('rightButton', './media/general/btn-right.svg');
 		this.load.image('leftButton', './media/general/btn-left.svg');
@@ -132,11 +132,11 @@ class lvl2GameScene1 extends Phaser.Scene {
           });
           if (availableEnemies.length > 0) {
             const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);
-            const portal = this.add.image(randomX, randomY, 'portal').setScale(0.08).setAlpha(0.8);
+            const portal = this.add.image(randomX, randomY, 'portal').setScale(0.2).setAlpha(0.8);
             this.time.delayedCall(800, () => {
               portal.destroy();
             });
-            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-199);  
+            gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.3).setGravityY(-199);  
           }      
           enemyCount++;  
         }
@@ -156,11 +156,11 @@ class lvl2GameScene1 extends Phaser.Scene {
         });
         if (!isTooClose) {
           const randomSpiderman = Phaser.Utils.Array.GetRandom(spidermen);
-          const portal = this.add.image(randomX, randomY, 'portal').setScale(0.08).setAlpha(0.8);
+          const portal = this.add.image(randomX, randomY, 'portal').setScale(0.2).setAlpha(0.8);
             this.time.delayedCall(800, () => {
               portal.destroy();
             });
-          gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.13).setGravityY(-199);
+          gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.3).setGravityY(-199);
           break;
         }
       } while (true);
@@ -170,7 +170,7 @@ class lvl2GameScene1 extends Phaser.Scene {
     const genWeb = () => {
       let randomSpider = Phaser.Utils.Array.GetRandom(gameState.enemies.getChildren());
       if (randomSpider) {
-        const chaosX = (Math.random() < 0.5 ? -1 : 1)* Math.random() * 100;
+        const chaosX = (Math.random() < 0.5 ? -1 : 1)* Math.random() * 200;
         const web = webs.create(randomSpider.x, randomSpider.y, 'spiderWeb').setGravityY(-75).setGravityX(chaosX);
         web.setCollideWorldBounds(true); 
         this.physics.add.collider(webs, platforms, (web) => {
@@ -203,7 +203,7 @@ class lvl2GameScene1 extends Phaser.Scene {
 			}
 		});
 
-    gameState.enemyVelocity = 0.7;
+    gameState.enemyVelocity = 1.5;
   }
 
 
@@ -211,9 +211,9 @@ class lvl2GameScene1 extends Phaser.Scene {
   update() {
     if (gameState.active) {
       if (gameState.cursors.left.isDown) {
-        gameState.player.setVelocityX(-160);
+        gameState.player.setVelocityX(-320);
       } else if (gameState.cursors.right.isDown) {
-        gameState.player.setVelocityX(160);
+        gameState.player.setVelocityX(320);
       } else {
         gameState.player.setVelocityX(0);
       }
@@ -241,10 +241,10 @@ class lvl2GameScene1 extends Phaser.Scene {
 				this.physics.pause();
         gameState.websLoop.destroy();
 
-				const winText = this.add.text(100, 240, 'You won!', { fontSize: '28px', fill: '#ffffff'  });
+				const winText = this.add.text(300, 600, 'You won!', { fontSize: '62px'});
 				winText.setStyle({ backgroundColor: '#000000', fill: '#ffffff'});
 				winText.setPadding(3, 5);
-        const readyText = this.add.text(75, 270, 'Get ready for \nthe next level', { fontSize: '22px', fill: '#ffffff' });
+        const readyText = this.add.text(220, 660, 'Get ready for \nthe next level', { fontSize: '52px'});
 				readyText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' }); 
 				readyText.setPadding(3, 5);
 
@@ -262,7 +262,7 @@ class lvl2GameScene1 extends Phaser.Scene {
       } else {
 				gameState.enemies.getChildren().forEach(spider => {
 					spider.x += gameState.enemyVelocity;
-					if (spider.y >= 500) {
+					if (spider.y >= 1300) {
             this.caught()
 					}
 				});
@@ -281,14 +281,14 @@ class lvl2GameScene1 extends Phaser.Scene {
     gameState.enemyVelocity = 0
     gameState.player.setVelocity(0);
     this.physics.pause();
-    this.pauseText = this.add.text(150, 250, 'Pause', { fontSize: '24px', fill: '#ffffff' });
+    this.pauseText = this.add.text(300, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
     this.pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
   }
 
   resumeGame() {
     gameState.isPaused = false;
     gameState.websLoop.paused = false;
-    gameState.enemyVelocity = 0.4
+    gameState.enemyVelocity = 1.5
     gameState.player.setVelocity(0);
     this.physics.resume();
     if (this.pauseText) {
@@ -307,12 +307,14 @@ class lvl2GameScene1 extends Phaser.Scene {
 		gameState.lives = 5;
 		gameState.scoreText.setText(`Score: ${gameState.score}`);				
     	gameState.livesText.setText(`Lives: ${gameState.lives}`);
-      const catchedText = this.add.text(60, 250, 'They caught you!', { fontSize: '24px', fill: '#ffffff' });
-      catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
-      catchedText.setPadding(3, 5);
-      const restartText = this.add.text(80, 280, 'Click to restart', { fontSize: '20px', fill: '#ffffff' });
-      restartText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
-      restartText.setPadding(3, 5);
+      	const catchedText = this.add.text(150, 600, '', { fontSize: '62px'});
+		catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
+		catchedText.setPadding(3, 5);
+		catchedText.setAlign('center');
+		catchedText.setText([
+			'They caught you!',
+			'Click to restart'
+		]);
   }
 
   handleJoystickInput() {
@@ -321,9 +323,9 @@ class lvl2GameScene1 extends Phaser.Scene {
     
     if (!isKeyboardInput) {
       if (cursorKeys.left.isDown) {
-        gameState.player.setVelocityX(-160);
+        gameState.player.setVelocityX(-320);
       } else if (cursorKeys.right.isDown) {
-        gameState.player.setVelocityX(160);
+        gameState.player.setVelocityX(320);
       } else {
         gameState.player.setVelocityX(0);
       }

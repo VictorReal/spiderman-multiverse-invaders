@@ -17,7 +17,7 @@ class lvl2GameStart2 extends Phaser.Scene {
     } 
    
     const screenWidth = this.scale.width / 2;
-    const videoSprite = this.add.video(screenWidth, 300, 'opening2-1').setScale(0.19);
+    const videoSprite = this.add.video(screenWidth, 650, 'opening2-1').setScale(0.48);
     videoSprite.play(true);
     videoSprite.setLoop(false);
 
