@@ -225,7 +225,7 @@ class lvl1GameScene extends Phaser.Scene {
 			}
 		});
 
-		gameState.enemyVelocity = 0.6;
+		gameState.enemyVelocity = 0.7;
 	}
 
 	update() {
@@ -309,7 +309,7 @@ class lvl1GameScene extends Phaser.Scene {
 	resumeGame() {
 		gameState.isPaused = false;
 		gameState.websLoop.paused = false;
-    gameState.enemyVelocity = 0.4
+    gameState.enemyVelocity = 0.6
 		gameState.player.setVelocity(0);
 		this.physics.resume();
     if (this.pauseText) {
