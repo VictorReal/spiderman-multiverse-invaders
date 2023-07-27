@@ -225,7 +225,7 @@ class lvl1GameScene extends Phaser.Scene {
 			}
 		});
 
-		gameState.enemyVelocity = 0.7;
+		gameState.enemyVelocity = 0.6;
 	}
 
 	update() {
@@ -261,10 +261,10 @@ class lvl1GameScene extends Phaser.Scene {
 				this.physics.pause();
 				gameState.websLoop.destroy();	
 
-				const winText = this.add.text(300, 600, 'You won!', { fontSize: '62px', fill: '#ffffff'  });
+				const winText = this.add.text(300, 600, 'You won!', { fontSize: '62px'});
 				winText.setStyle({ backgroundColor: '#000000', fill: '#ffffff'});
 				winText.setPadding(3, 5);
-        const readyText = this.add.text(220, 660, 'Get ready for \nthe next level', { fontSize: '52px', fill: '#ffffff' });
+        const readyText = this.add.text(220, 660, 'Get ready for \nthe next level', { fontSize: '52px'});
 				readyText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' }); 
 				readyText.setPadding(3, 5);
 
@@ -290,7 +290,7 @@ class lvl1GameScene extends Phaser.Scene {
 				gameState.leftMostSpider = this.sortedEnemies()[0];
 				gameState.rightMostSpider = this.sortedEnemies()[this.sortedEnemies().length - 1];
 
-				if (gameState.leftMostSpider.x < 50 || gameState.rightMostSpider.x > 850) {
+				if (gameState.leftMostSpider.x < 30 || gameState.rightMostSpider.x > 870) {
 					gameState.enemyVelocity *= -1;
 				}
 			}
@@ -309,7 +309,7 @@ class lvl1GameScene extends Phaser.Scene {
 	resumeGame() {
 		gameState.isPaused = false;
 		gameState.websLoop.paused = false;
-    gameState.enemyVelocity = 0.7
+    gameState.enemyVelocity = 0.6
 		gameState.player.setVelocity(0);
 		this.physics.resume();
     if (this.pauseText) {
