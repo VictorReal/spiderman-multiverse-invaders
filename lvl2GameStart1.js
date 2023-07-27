@@ -13,7 +13,7 @@ class lvl2GameStart1 extends Phaser.Scene {
     this.backgroundMusic.play();   
    
     const screenWidth = this.scale.width / 2;
-    const videoSprite = this.add.video(screenWidth, 300, 'opening2').setScale(0.7);
+    const videoSprite = this.add.video(screenWidth, 650, 'opening2').setScale(1.7);
     videoSprite.play(true);
     videoSprite.setLoop(false);
 

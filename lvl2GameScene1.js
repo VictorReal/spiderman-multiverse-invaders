@@ -50,18 +50,18 @@ class lvl2GameScene1 extends Phaser.Scene {
       this.backgroundMusic.play({ seek: musicPosition });
     }
 
-    const background = this.add.image(0, 40, 'bg2');
+    const background = this.add.image(0, 90, 'bg2');
     background.setOrigin(0, 0);
-    background.setScale(0.6);
+    background.setScale(1.48);
 
     const buttonX = newWidth();
 
     const platforms = this.physics.add.staticGroup();
-    platforms.create(225, 520, 'platform').setScale(1, 0.3).refreshBody();
-    gameState.scoreText = this.add.text(5, 513, `Score: ${gameState.score}`, { fontSize: '14px', fill: '#ffffff' });
-    gameState.livesText = this.add.text(buttonX-75, 513, `Lives: ${gameState.lives}`, { fontSize: '14px', fill: '#ffffff' });
+		platforms.create(450, 1310, 'platform').setScale(2.2, 0.6).refreshBody();
+		gameState.scoreText = this.add.text(20, 1300, `Score: ${gameState.score}`, { fontSize: '38px', fill: '#ffffff' });
+		gameState.livesText = this.add.text(buttonX - 200, 1300, `Lives: ${gameState.lives}`, { fontSize: '38px', fill: '#ffffff' });
 
-    gameState.player = this.physics.add.sprite(200, 460, 'miles').setScale(0.12);
+    gameState.player = this.physics.add.sprite(400, 1200, 'miles').setScale(0.2);
 
     gameState.player.setCollideWorldBounds(true);
     this.physics.add.collider(gameState.player, platforms);
@@ -72,26 +72,27 @@ class lvl2GameScene1 extends Phaser.Scene {
     gameState.cursors = this.input.keyboard.createCursorKeys();
     
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-      x: 70,
-      y: 590,
-      radius: 40,
-      base: this.add.circle(0, 0, 40, 0x888888),
-      thumb: this.add.circle(0, 0, 20, 0xcccccc),
+      x: 130,
+      y: 1460,
+      radius: 80,
+      base: this.add.circle(0, 0, 80, 0x888888),
+      thumb: this.add.circle(0, 0, 40, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
-		const spaceButton = this.add.image(buttonX - 50, 565, 'spaceButton')
+		const spaceButton = this.add.image(buttonX - 110, 1450, 'spaceButton')
 			.setInteractive()
-			.setAlpha(0.9);
+			.setAlpha(0.9)
+      .setScale(2.5);
 		spaceButton.on('pointerdown', () => {
       if (!gameState.isPaused) {
 			gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
 		});
     
-    const musicButton = this.add.image(30, 20, 'musicButton')
+    const musicButton = this.add.image(60, 40, 'musicButton')
     .setInteractive()
     .setAlpha(0.9)
-    .setScale(0.2);
+    .setScale(0.5);
     musicButton.on('pointerdown', () => {
       if (this.backgroundMusic.isPaused) {
         this.backgroundMusic.resume();
@@ -100,10 +101,10 @@ class lvl2GameScene1 extends Phaser.Scene {
       }
     });
 
-    const pauseButton = this.add.image(buttonX - 30, 20, 'pauseButton')
+    const pauseButton = this.add.image(buttonX - 60, 40, 'pauseButton')
     .setInteractive()
     .setAlpha(0.9)
-    .setScale(0.2);
+    .setScale(0.5);
     pauseButton.on('pointerdown', () => {
       if (gameState.isPaused) {
         this.resumeGame();
@@ -118,8 +119,8 @@ class lvl2GameScene1 extends Phaser.Scene {
 
     function addEnemy() {
       if (enemyCount < 55) {
-        const randomX = Math.random() * 300 + 25;
-        const randomY = Math.random() * 270 + 75;
+        const randomX = Math.random() * 700 + 35;
+        const randomY = Math.random() * 600 + 200;
   
         if (gameState.active) {
           let availableEnemies = spidermen.slice();
@@ -145,8 +146,8 @@ class lvl2GameScene1 extends Phaser.Scene {
     for (let i = 0; i < enemyCount; i++) {
       let randomX, randomY;  
       do {
-        randomX = Math.random() * 300 + 25;
-        randomY = Math.random() * 170 + 85;
+        randomX = Math.random() * 700 + 35;
+        randomY = Math.random() * 600 + 200;
         const proximityThreshold = 40;
   
         const isTooClose = gameState.enemies.getChildren().some(enemy => {
@@ -267,7 +268,7 @@ class lvl2GameScene1 extends Phaser.Scene {
 				});
 
         gameState.enemies.getChildren().forEach(spider => {
-          if (spider.x < 15 || spider.x > 340) {
+          if (spider.x < 30 || spider.x > 870) {
             gameState.enemyVelocity *= -1;
           }
         });

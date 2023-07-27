@@ -13,11 +13,11 @@ class lvl0GameStart extends Phaser.Scene {
 		this.backgroundMusic = this.sound.add('backgroundMusic0', { loop: true });
     this.backgroundMusic.play();
 
-    const background = this.add.image(-10, 40, 'poster');
+    const background = this.add.image(0, 90, 'poster');
 		background.setOrigin(0, 0);
-		background.setScale(0.5);
+		background.setScale(1.21);
 
-    const pauseText = this.add.text(40, 505, '', { fontSize: '18px'});
+    const pauseText = this.add.text(110, 1170, '', { fontSize: '45px'});
     pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
     pauseText.setInteractive();
     pauseText.setPadding(3, 5);
@@ -33,10 +33,10 @@ class lvl0GameStart extends Phaser.Scene {
 			this.scene.start('lvl1GameStart')
     });
 
-    const musicButton = this.add.image(30, 20, 'musicButton')
+    const musicButton = this.add.image(60, 40, 'musicButton')
     .setInteractive()
     .setAlpha(0.9)
-    .setScale(0.2);
+    .setScale(0.5);
     musicButton.on('pointerdown', () => {
       if (this.backgroundMusic.isPaused) {
         this.backgroundMusic.resume();
