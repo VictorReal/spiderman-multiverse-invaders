@@ -212,8 +212,10 @@ class lvl2GameScene2 extends Phaser.Scene {
     if (gameState.active) {
       if (gameState.cursors.left.isDown) {
         gameState.player.setVelocityX(-320);
+        gameState.player.flipX = true;
       } else if (gameState.cursors.right.isDown) {
         gameState.player.setVelocityX(320);
+        gameState.player.flipX = false;
       } else {
         gameState.player.setVelocityX(0);
       }
@@ -270,6 +272,7 @@ class lvl2GameScene2 extends Phaser.Scene {
         gameState.enemies.getChildren().forEach(spider => {
           if (spider.x < 30 || spider.x > 870) {
             gameState.enemyVelocity *= -1;
+            spider.flipX = (spider.x >= 870);
           }
         });
     } 
@@ -324,8 +327,10 @@ class lvl2GameScene2 extends Phaser.Scene {
     if (!isKeyboardInput) {
       if (cursorKeys.left.isDown) {
         gameState.player.setVelocityX(-320);
+        gameState.player.flipX = true;
       } else if (cursorKeys.right.isDown) {
         gameState.player.setVelocityX(320);
+        gameState.player.flipX = false;
       } else {
         gameState.player.setVelocityX(0);
       }

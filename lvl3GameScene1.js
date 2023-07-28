@@ -1,19 +1,19 @@
 class lvl3GameScene1 extends Phaser.Scene {
 	constructor() {
 		super({ key: 'lvl3GameScene1' });
-    this.heights = [6, 7, 5, null, 5, 7, null, 6, 6];
+    this.heights = [7, 8, 6, null, 5, 7, null, 6, 6];
     this.weather = 'afternoon';
 	}
 
   
     preload() {
       this.load.image('platform3', './media/general/lvl3-platform3-1.png');
-      this.load.spritesheet('milesanim', './media/skins/miles-anim.png', { frameWidth: 64, frameHeight: 64});
+      this.load.spritesheet('milesanim', './media/skins/miles-anim.png', { frameWidth: 128, frameHeight: 128});
       this.load.spritesheet('gwen-anim', './media/skins/gwen-anim.png', { frameWidth: 72, frameHeight: 90})
   
-      this.load.image('bg31', './media/general/lvl3-sun.png');
-      this.load.image('bg33', './media/general/lvl3-details.png');
+      this.load.image('bg31', './media/general/lvl3-sun.png');      
       this.load.image('bg32', './media/general/lvl3-town.png');
+      this.load.image('bg33', './media/general/lvl3-details.png');
 
       this.load.image('spaceButton', './media/general/btn-space.svg');
       this.load.image('pauseButton', './media/general/btn-pause.svg');
@@ -35,11 +35,11 @@ class lvl3GameScene1 extends Phaser.Scene {
       this.backgroundMusic.play({ seek: musicPosition });
     }
   
-    gameState.bgColor = this.add.rectangle(0, 40, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
+    gameState.bgColor = this.add.rectangle(0, 90, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
   
     this.createParallaxBackgrounds();
   
-    gameState.player = this.physics.add.sprite(100, 220, 'gwen-anim').setScale(.6).setGravityY(200);
+    gameState.player = this.physics.add.sprite(100, 800, 'gwen-anim').setScale(1.5).setGravityY(200);
   
     gameState.platforms = this.physics.add.staticGroup();      
   
@@ -50,7 +50,7 @@ class lvl3GameScene1 extends Phaser.Scene {
     gameState.player.setCollideWorldBounds(true);
     this.levelSetup();
     const platforms = this.physics.add.staticGroup();
-    platforms.create(225, 700, 'platformlvl3').setScale(1, 0.6).refreshBody();
+    platforms.create(2000, 1600, 'platformlvl3').setScale(1, 0.8).refreshBody();
     this.createAnimations();
     this.physics.add.collider(gameState.player, gameState.platforms);
     this.physics.add.collider(gameState.goal, gameState.platforms);
@@ -58,11 +58,11 @@ class lvl3GameScene1 extends Phaser.Scene {
     gameState.cursors = this.input.keyboard.createCursorKeys();
 
     this.joyStick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-      x: 70,
-      y: 590,
-      radius: 40,
-      base: this.add.circle(0, 0, 40, 0x888888),
-      thumb: this.add.circle(0, 0, 20, 0xcccccc),
+      x: 130,
+      y: 1460,
+      radius: 80,
+      base: this.add.circle(0, 0, 80, 0x888888),
+      thumb: this.add.circle(0, 0, 40, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
     this.mbLayer = this.add.group();
@@ -70,10 +70,10 @@ class lvl3GameScene1 extends Phaser.Scene {
     this.ptLayer = this.add.group();
 
       
-      const musicButton = this.mbLayer.create(30, 20, 'musicButton')
+      const musicButton = this.mbLayer.create(60, 40, 'musicButton')
     .setInteractive()
     .setAlpha(0.9)
-    .setScale(0.2);
+    .setScale(0.5);
     musicButton.on('pointerdown', () => {
       if (this.backgroundMusic.isPaused) {
         this.backgroundMusic.resume();
@@ -82,10 +82,10 @@ class lvl3GameScene1 extends Phaser.Scene {
       }
     });
 
-    const pauseButton = this.pbLayer.create( config.width - 30, 20, 'pauseButton')
+    const pauseButton = this.pbLayer.create( config.width - 60, 40, 'pauseButton')
     .setInteractive()
     .setAlpha(0.9)
-    .setScale(0.2);
+    .setScale(0.5);
     pauseButton.on('pointerdown', () => {
       if (gameState.isPaused) {
         this.resumeGame();
@@ -98,7 +98,7 @@ class lvl3GameScene1 extends Phaser.Scene {
   
   createPlatform(xIndex, yIndex) {
     if (typeof yIndex === 'number' && typeof xIndex === 'number') {
-      gameState.platforms.create((220 * xIndex),  yIndex * 120 - 100, 'platform3').setOrigin(0, 0.5).refreshBody();
+      gameState.platforms.create((440 * xIndex),  yIndex * 200, 'platform3').setOrigin(0, 0.5).setScale(2.0).refreshBody();
     }
   }
   
@@ -135,8 +135,8 @@ class lvl3GameScene1 extends Phaser.Scene {
   }
   
   createParallaxBackgrounds() {
-    gameState.bg1 = this.add.image(0, 0, 'bg31');
-    gameState.bg2 = this.add.image(0, 150, 'bg32');
+    gameState.bg1 = this.add.image(200, 0, 'bg31');
+    gameState.bg2 = this.add.image(0, 350, 'bg32');
     gameState.bg3 = this.add.image(0, 0, 'bg33');
   
     gameState.bg1.setOrigin(0, 0);
@@ -160,7 +160,7 @@ class lvl3GameScene1 extends Phaser.Scene {
       this.createPlatform(xIndex, yIndex);
     } 
 
-    gameState.goal = this.physics.add.sprite(gameState.width - 40, 100, 'milesanim');
+    gameState.goal = this.physics.add.sprite(gameState.width - 80, 100, 'milesanim');
   
     this.physics.add.overlap(gameState.player, gameState.goal, function() {
       this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
@@ -180,11 +180,11 @@ class lvl3GameScene1 extends Phaser.Scene {
       gameState.goal.anims.play('fire', true);
       if (gameState.cursors.right.isDown) {
         gameState.player.flipX = false;
-        gameState.player.setVelocityX(gameState.speed);
+        gameState.player.setVelocityX(gameState.speed * 2);
         gameState.player.anims.play('run', true);
       } else if (gameState.cursors.left.isDown) {
         gameState.player.flipX = true;
-        gameState.player.setVelocityX(-gameState.speed);
+        gameState.player.setVelocityX(-gameState.speed * 2);
         gameState.player.anims.play('run', true);
       } else {
         gameState.player.setVelocityX(0);
@@ -193,7 +193,7 @@ class lvl3GameScene1 extends Phaser.Scene {
   
       if (Phaser.Input.Keyboard.JustDown(gameState.cursors.space) && gameState.player.body.touching.down) {
         gameState.player.anims.play('jump', true);
-        gameState.player.setVelocityY(-350);
+        gameState.player.setVelocityY(-410);
       }
   
       if (!gameState.player.body.touching.down){
@@ -210,8 +210,8 @@ class lvl3GameScene1 extends Phaser.Scene {
         });
       }
       this.handleJoystickInput();
-      this.pbLayer.setX(this.cameras.main.scrollX + config.width - 30);
-      this.mbLayer.setX(this.cameras.main.scrollX + 30);  
+      this.pbLayer.setX(this.cameras.main.scrollX + config.width - 60);
+      this.mbLayer.setX(this.cameras.main.scrollX + 60);  
     }
   }
   
@@ -255,10 +255,10 @@ class lvl3GameScene1 extends Phaser.Scene {
       gameState.goal.anims.play('fire', true);
       if (cursorKeys.left.isDown) {
         gameState.player.flipX = true;
-          gameState.player.setVelocityX(-gameState.speed);
+          gameState.player.setVelocityX(-gameState.speed * 2);
           gameState.player.anims.play('run', true);
       } else if (cursorKeys.right.isDown) {gameState.player.flipX = false;
-          gameState.player.setVelocityX(gameState.speed);
+          gameState.player.setVelocityX(gameState.speed * 2);
           gameState.player.anims.play('run', true);
       } else {
         gameState.player.setVelocityX(0);
@@ -266,7 +266,7 @@ class lvl3GameScene1 extends Phaser.Scene {
       }
       if(cursorKeys.up.isDown && gameState.player.body.touching.down){
       gameState.player.anims.play('jump', true);
-      gameState.player.setVelocityY(-350);
+      gameState.player.setVelocityY(-410);
       }
     }
   }

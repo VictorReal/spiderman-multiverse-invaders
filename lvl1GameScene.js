@@ -232,8 +232,10 @@ class lvl1GameScene extends Phaser.Scene {
 		if (gameState.active) {
 			if (gameState.cursors.left.isDown) {
 				gameState.player.setVelocityX(-320);
+				gameState.player.flipX = true;
 			} else if (gameState.cursors.right.isDown) {
 				gameState.player.setVelocityX(320);
+				gameState.player.flipX = false;
 			} else {
 				gameState.player.setVelocityX(0);
 			}
@@ -345,8 +347,10 @@ class lvl1GameScene extends Phaser.Scene {
     if (!isKeyboardInput) {
       if (cursorKeys.left.isDown) {
         gameState.player.setVelocityX(-320);
+		gameState.player.flipX = true;
       } else if (cursorKeys.right.isDown) {
         gameState.player.setVelocityX(320);
+		gameState.player.flipX = false;
       } else {
         gameState.player.setVelocityX(0);
       }
