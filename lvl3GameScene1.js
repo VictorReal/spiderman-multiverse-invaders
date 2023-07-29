@@ -9,7 +9,7 @@ class lvl3GameScene1 extends Phaser.Scene {
   preload() {
     this.load.image('platform3', './media/general/lvl3-platform3-1.png');
     this.load.spritesheet('milesanim', './media/skins/miles-anim.png', { frameWidth: 128, frameHeight: 128});
-    this.load.spritesheet('gwen-anim', './media/skins/gwen-anim.png', { frameWidth: 72, frameHeight: 90})
+    this.load.spritesheet('gwen-anim', './media/skins/gwen-anim.png', { frameWidth: 288, frameHeight: 330})
   
     this.load.image('bg31', './media/general/lvl3-sun.png');      
     this.load.image('bg32', './media/general/lvl3-town.png');
@@ -39,7 +39,7 @@ class lvl3GameScene1 extends Phaser.Scene {
   
     this.createParallaxBackgrounds();
   
-    gameState.player = this.physics.add.sprite(100, 800, 'gwen-anim').setScale(1.5).setGravityY(200);
+    gameState.player = this.physics.add.sprite(100, 800, 'gwen-anim').setScale(0.4).setGravityY(200);
   
     gameState.platforms = this.physics.add.staticGroup();      
   
@@ -105,7 +105,7 @@ class lvl3GameScene1 extends Phaser.Scene {
   createAnimations() {
     this.anims.create({
       key: 'run',
-      frames: this.anims.generateFrameNumbers('gwen-anim', { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers('gwen-anim', { start: 0, end: 2 }),
       frameRate: 10,
       repeat: -1
     });
