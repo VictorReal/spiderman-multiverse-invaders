@@ -135,7 +135,7 @@ class lvl1GameScene extends Phaser.Scene {
 						let randomX, randomY;
 						let isTooClose;
 						do {
-							randomX = Math.random() * 700 + 25;
+							randomX = Math.random() * 700 + 40;
 							randomY = Math.random() * 150 + 200;
 							const proximityThreshold = 100;
 
@@ -173,7 +173,7 @@ class lvl1GameScene extends Phaser.Scene {
 		for (let i = 0; i < enemyCount; i++) {
 			let randomX, randomY;
 			do {
-				randomX = Math.random() * 700 + 25;
+				randomX = Math.random() * 700 + 40;
 				randomY = Math.random() * 150 + 200;
 				const proximityThreshold = 100;
 
@@ -327,7 +327,7 @@ class lvl1GameScene extends Phaser.Scene {
     this.backgroundMusic.pause();
     musicPosition = this.backgroundMusic.seek;
 		gameState.score = 0;
-		gameState.lives = 3;
+		gameState.lives = 5;
 		gameState.scoreText.setText(`Score: ${gameState.score}`);				
     	gameState.livesText.setText(`Lives: ${gameState.lives}`);
 		const catchedText = this.add.text(150, 600, '', { fontSize: '62px'});

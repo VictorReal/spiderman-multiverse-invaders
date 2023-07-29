@@ -1,6 +1,6 @@
 const gameState = {
   score: 0,
-  lives: 3,
+  lives: 5,
   isPaused: false,
   
   speed: 240,

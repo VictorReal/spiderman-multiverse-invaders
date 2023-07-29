@@ -119,7 +119,7 @@ class lvl2GameScene2 extends Phaser.Scene {
 
     function addEnemy() {
       if (enemyCount < 55) {
-        const randomX = Math.random() * 700 + 35;
+        const randomX = Math.random() * 700 + 55;
         const randomY = Math.random() * 600 + 200;
   
         if (gameState.active) {
@@ -146,7 +146,7 @@ class lvl2GameScene2 extends Phaser.Scene {
     for (let i = 0; i < enemyCount; i++) {
       let randomX, randomY;  
       do {
-        randomX = Math.random() * 700 + 35;
+        randomX = Math.random() * 700 + 55;
         randomY = Math.random() * 600 + 200;
         const proximityThreshold = 40;
   
