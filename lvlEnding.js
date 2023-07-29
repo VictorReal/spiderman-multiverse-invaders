@@ -17,11 +17,11 @@ class lvlEnding extends Phaser.Scene {
     this.endingTheme2 = this.sound.add('endingTheme2', { loop: true });     
    
     const screenWidth = this.scale.width / 2;
-    const videoSprite1 = this.add.video(screenWidth, 300, 'ending1').setScale(0.19);
+    const videoSprite1 = this.add.video(screenWidth, 650, 'ending1').setScale(0.48);
     videoSprite1.play(true);
     videoSprite1.setLoop(false);
-    gameState.thankText = this.add.text(80, 120, `Thanks for playing!`, { fontSize: '20px', fill: '#ffffff' });
-    gameState.finelText = this.add.text(120, 420, `The End!  `, { fontSize: '30px', fill: '#ffffff' });
+    gameState.thankText = this.add.text(150, 220, `Thanks for playing!`, { fontSize: '56px', fill: '#ffffff' });
+    gameState.finelText = this.add.text(300, 1000, `The End!  `, { fontSize: '72px', fill: '#ffffff' });
 
     videoSprite1.on('complete', function () {
       this.endingTheme1.pause();
@@ -29,10 +29,10 @@ class lvlEnding extends Phaser.Scene {
       videoSprite1.destroy();
       this.endingTheme2.play({ seek: musicPosition });
       
-      const videoSprite2 = this.add.video(screenWidth, 280, 'ending2').setScale(0.8);
+      const videoSprite2 = this.add.video(screenWidth, 650, 'ending2').setScale(1.8);
       videoSprite2.play(true);
       videoSprite2.setLoop(true);
-      gameState.finelText = this.add.text(120, 420, `The End!??`, { fontSize: '30px', fill: '#ffffff' });
+      gameState.finelText = this.add.text(300, 1000, `The End!??`, { fontSize: '72px', fill: '#ffffff' });
     }, this);
 	}
 }

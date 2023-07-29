@@ -170,7 +170,7 @@ class lvl2GameScene2 extends Phaser.Scene {
     const genWeb = () => {
       let randomSpider = Phaser.Utils.Array.GetRandom(gameState.enemies.getChildren());
       if (randomSpider) {
-        const chaosX = (Math.random() < 0.5 ? -1 : 1)* Math.random() * 200;
+        const chaosX = (Math.random() < 0.5 ? -1 : 1)* Math.random() * 150;
         const web = webs.create(randomSpider.x, randomSpider.y, 'spiderWeb').setGravityY(-75).setGravityX(chaosX);
         web.setCollideWorldBounds(true); 
         this.physics.add.collider(webs, platforms, (web) => {
@@ -203,7 +203,7 @@ class lvl2GameScene2 extends Phaser.Scene {
 			}
 		});
 
-    gameState.enemyVelocity = 1.5;
+    gameState.enemyVelocity = 1.8;
   }
 
 
@@ -246,10 +246,14 @@ class lvl2GameScene2 extends Phaser.Scene {
 				const winText = this.add.text(300, 600, 'You won!', { fontSize: '62px'});
 				winText.setStyle({ backgroundColor: '#000000', fill: '#ffffff'});
 				winText.setPadding(3, 5);
-        const readyText = this.add.text(220, 660, 'Get ready for \nthe next level', { fontSize: '52px'});
+        const readyText = this.add.text(220, 660, '', { fontSize: '52px'});
 				readyText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' }); 
 				readyText.setPadding(3, 5);
-
+        readyText.setAlign('center');
+        readyText.setText([
+          'Get ready for ',
+          'the next level'
+        ]);
         this.time.delayedCall(3000, () => {   	
 					gameState.score = 0;
 					gameState.lives = 1;
@@ -270,9 +274,9 @@ class lvl2GameScene2 extends Phaser.Scene {
 				});
 
         gameState.enemies.getChildren().forEach(spider => {
-          if (spider.x < 30 || spider.x > 870) {
+          if (spider.x < 50 || spider.x > 800) {
             gameState.enemyVelocity *= -1;
-            spider.flipX = (spider.x >= 870);
+            spider.flipX = (spider.x >= 800);
           }
         });
     } 
@@ -291,7 +295,7 @@ class lvl2GameScene2 extends Phaser.Scene {
   resumeGame() {
     gameState.isPaused = false;
     gameState.websLoop.paused = false;
-    gameState.enemyVelocity = 1.5
+    gameState.enemyVelocity = 1.8
     gameState.player.setVelocity(0);
     this.physics.resume();
     if (this.pauseText) {

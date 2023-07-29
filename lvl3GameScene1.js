@@ -6,29 +6,29 @@ class lvl3GameScene1 extends Phaser.Scene {
 	}
 
   
-    preload() {
-      this.load.image('platform3', './media/general/lvl3-platform3-1.png');
-      this.load.spritesheet('milesanim', './media/skins/miles-anim.png', { frameWidth: 128, frameHeight: 128});
-      this.load.spritesheet('gwen-anim', './media/skins/gwen-anim.png', { frameWidth: 72, frameHeight: 90})
+  preload() {
+    this.load.image('platform3', './media/general/lvl3-platform3-1.png');
+    this.load.spritesheet('milesanim', './media/skins/miles-anim.png', { frameWidth: 128, frameHeight: 128});
+    this.load.spritesheet('gwen-anim', './media/skins/gwen-anim.png', { frameWidth: 72, frameHeight: 90})
   
-      this.load.image('bg31', './media/general/lvl3-sun.png');      
-      this.load.image('bg32', './media/general/lvl3-town.png');
-      this.load.image('bg33', './media/general/lvl3-details.png');
+    this.load.image('bg31', './media/general/lvl3-sun.png');      
+    this.load.image('bg32', './media/general/lvl3-town.png');
+    this.load.image('bg33', './media/general/lvl3-details.png');
 
-      this.load.image('spaceButton', './media/general/btn-space.svg');
-      this.load.image('pauseButton', './media/general/btn-pause.svg');
-      this.load.image('musicButton', './media/general/btn-music.svg');
-      this.load.image('platformlvl3', './media/general/lvl3-platform.png');
+    this.load.image('spaceButton', './media/general/btn-space.svg');
+    this.load.image('pauseButton', './media/general/btn-pause.svg');
+    this.load.image('musicButton', './media/general/btn-music.svg');
+    this.load.image('platformlvl3', './media/general/lvl3-platform.png');
 
-      this.load.audio('backgroundMusic3', './media/sounds/theme-lvl3.mp3');
-      let url;
-      url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
-      this.load.plugin('rexvirtualjoystickplugin', url, true);
-    }
+    this.load.audio('backgroundMusic3', './media/sounds/theme-lvl3.mp3');
+    let url;
+    url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
+    this.load.plugin('rexvirtualjoystickplugin', url, true);
+  }
   
-    create() {
-      gameState.active = true;
-      this.backgroundMusic = this.sound.add('backgroundMusic3', { loop: true });
+  create() {
+    gameState.active = true;
+    this.backgroundMusic = this.sound.add('backgroundMusic3', { loop: true });
     if (musicPosition === 0) {
       this.backgroundMusic.play();
     } else {
@@ -102,8 +102,6 @@ class lvl3GameScene1 extends Phaser.Scene {
     }
   }
   
-    
-  
   createAnimations() {
     this.anims.create({
       key: 'run',
@@ -127,7 +125,7 @@ class lvl3GameScene1 extends Phaser.Scene {
     })
   
     this.anims.create({
-      key: 'fire',
+      key: 'miles',
       frames: this.anims.generateFrameNumbers('milesanim'),
       frameRate: 10,
       repeat: -1
@@ -177,7 +175,7 @@ class lvl3GameScene1 extends Phaser.Scene {
   
   update() {
     if(gameState.active){
-      gameState.goal.anims.play('fire', true);
+      gameState.goal.anims.play('miles', true);
       if (gameState.cursors.right.isDown) {
         gameState.player.flipX = false;
         gameState.player.setVelocityX(gameState.speed * 2);
@@ -227,6 +225,7 @@ class lvl3GameScene1 extends Phaser.Scene {
     gameState.bg2.setTint(color);
     gameState.bg3.setTint(color);
     gameState.player.setTint(color);
+    gameState.goal.setTint(color);
     for (let platform of gameState.platforms.getChildren()) {
       platform.setTint(color);
     }
@@ -235,10 +234,10 @@ class lvl3GameScene1 extends Phaser.Scene {
   pauseGame() {
     gameState.isPaused = true;  
     this.physics.pause();
-    const pauseText = this.add.text(150, 250, 'Pause', { fontSize: '24px', fill: '#ffffff' });
+    const pauseText = this.add.text(300, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
     pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
     this.ptLayer.add(pauseText);
-    this.ptLayer.setX(this.cameras.main.scrollX + 150);
+    this.ptLayer.setX(this.cameras.main.scrollX + 300);
   }
 
   resumeGame() {
@@ -252,7 +251,7 @@ class lvl3GameScene1 extends Phaser.Scene {
     const isKeyboardInput = gameState.cursors.left.isDown || gameState.cursors.right.isDown;
     
     if (!isKeyboardInput) {
-      gameState.goal.anims.play('fire', true);
+      gameState.goal.anims.play('miles', true);
       if (cursorKeys.left.isDown) {
         gameState.player.flipX = true;
           gameState.player.setVelocityX(-gameState.speed * 2);
