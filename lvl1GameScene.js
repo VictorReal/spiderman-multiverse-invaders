@@ -10,6 +10,7 @@ class lvl1GameScene extends Phaser.Scene {
 		this.load.image('leftButton', './media/general/btn-left.svg');
 		this.load.image('spaceButton', './media/general/btn-space.svg');
     this.load.image('pauseButton', './media/general/btn-pause.svg');
+    this.load.image('restartButton', './media/general/btn-restart.svg');
     this.load.image('musicButton', './media/general/btn-music.svg');
 		this.load.image('platform', './media/general/platform.png');
 		this.load.image('spiderWeb', './media/general/spiderWeb.png');
@@ -83,7 +84,7 @@ class lvl1GameScene extends Phaser.Scene {
       thumb: this.add.circle(0, 0, 40, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
-		const spaceButton = this.add.image(buttonX - 110, 1450, 'spaceButton')
+    const spaceButton = this.add.image(buttonX - 110, 1450, 'spaceButton')
 			.setInteractive()
 			.setAlpha(0.9)
 			.setScale(2.5);
@@ -91,7 +92,19 @@ class lvl1GameScene extends Phaser.Scene {
       if (!gameState.isPaused) {
 			gameState.spiderReweb.create(gameState.player.x, gameState.player.y, 'spiderReweb').setGravityY(-400);
       }
-		});
+		});    
+    
+    const restartButton = this.add.image(200, 40, 'restartButton')
+    .setInteractive()
+    .setAlpha(0.9)
+    .setScale(0.14);
+    restartButton.on('pointerdown', () => {
+      this.time.delayedCall(1000, () => {   	
+        gameState.score = 0;
+        gameState.lives = 5;  	
+      this.scene.restart('');
+      });     
+    });
     
     const musicButton = this.add.image(60, 40, 'musicButton')
     .setInteractive()
@@ -116,7 +129,6 @@ class lvl1GameScene extends Phaser.Scene {
         this.pauseGame();
       }
     });
-
 
 		const spidermen = ['spidy1', 'spidy2', 'spidy3', 'spidy1', 'spidy2', 'spidy3'];
 		let enemyCount = 4;

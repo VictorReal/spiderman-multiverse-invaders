@@ -16,6 +16,7 @@ class lvl3GameScene1 extends Phaser.Scene {
     this.load.image('bg33', './media/general/lvl3-details.png');
 
     this.load.image('spaceButton', './media/general/btn-space.svg');
+    this.load.image('restartButton', './media/general/btn-restart.svg');
     this.load.image('pauseButton', './media/general/btn-pause.svg');
     this.load.image('musicButton', './media/general/btn-music.svg');
     this.load.image('platformlvl3', './media/general/lvl3-platform.png');
@@ -65,12 +66,22 @@ class lvl3GameScene1 extends Phaser.Scene {
       thumb: this.add.circle(0, 0, 40, 0xcccccc),
     }).on('update', this.handleJoystickInput, this);
 
+    this.rbLayer = this.add.group();
     this.mbLayer = this.add.group();
     this.pbLayer = this.add.group();
     this.ptLayer = this.add.group();
-
       
-      const musicButton = this.mbLayer.create(60, 40, 'musicButton')
+    const restartButton = this.rbLayer.create(200, 40, 'restartButton')
+    .setInteractive()
+    .setAlpha(0.9)
+    .setScale(0.14);
+    restartButton.on('pointerdown', () => {
+      this.time.delayedCall(1000, () => {   	
+        this.scene.restart('');
+      });     
+    });
+    
+    const musicButton = this.mbLayer.create(60, 40, 'musicButton')
     .setInteractive()
     .setAlpha(0.9)
     .setScale(0.5);
@@ -209,7 +220,8 @@ class lvl3GameScene1 extends Phaser.Scene {
       }
       this.handleJoystickInput();
       this.pbLayer.setX(this.cameras.main.scrollX + config.width - 60);
-      this.mbLayer.setX(this.cameras.main.scrollX + 60);  
+      this.mbLayer.setX(this.cameras.main.scrollX + 60);
+      this.rbLayer.setX(this.cameras.main.scrollX + 200);  
     }
   }
   
