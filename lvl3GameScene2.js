@@ -228,7 +228,7 @@ class lvl3GameScene2 extends Phaser.Scene {
   setWeather(weather) {
     const weathers = {
       'sunset': {
-        'color': 0xF7FD04,
+        'color': 0xf7e259,
         'bgColor': 0xFFA500,
       },   
     }

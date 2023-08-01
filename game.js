@@ -30,7 +30,7 @@ const config = {
       enableBody: true,
     },
   },
-  scene: [/*lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart1, lvl2GameScene1, lvl2GameStart2, lvl2GameScene2, lvl3GameStart, */ lvl3GameScene1,  lvl3GameScene2, lvl3GameScene3, lvl4GameStart, lvl4GameScene, lvlEnding],
+  scene: [/*lvl0GameStart, lvl1GameStart, lvl1GameScene, lvl2GameStart1, lvl2GameScene1, lvl2GameStart2, lvl2GameScene2, lvl3GameStart,  lvl3GameScene1,*/  lvl3GameScene2, lvl3GameScene3, lvl4GameStart, lvl4GameScene, lvlEnding],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.LEFT_TOP,
