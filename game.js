@@ -14,15 +14,22 @@ function newWidth(){
   if(window.innerWidth < 850){
     return window.innerWidth*2.2
   }else{
-    return 350
+    return 950
   } 
 }
 
+function newHeight(){
+  if(window.innerWidth < 850){
+    return window.innerHeight*2.0
+  }else{
+    return 1700
+  } 
+}
 
 const config = {
   type: Phaser.AUTO,
   width: newWidth(),
-  height: window.innerHeight*2.0,
+  height: newHeight(),
   physics: {
     default: 'arcade',
     arcade: {

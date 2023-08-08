@@ -101,8 +101,10 @@ class lvl1GameScene extends Phaser.Scene {
     restartButton.on('pointerdown', () => {
       this.time.delayedCall(1000, () => {   	
         gameState.score = 0;
-        gameState.lives = 5;  	
-      this.scene.restart('');
+        gameState.lives = 5;
+        this.backgroundMusic.pause();
+        musicPosition = this.backgroundMusic.seek;  	
+        this.scene.restart('');
       });     
     });
     
@@ -341,7 +343,7 @@ class lvl1GameScene extends Phaser.Scene {
 		gameState.score = 0;
 		gameState.lives = 5;
 		gameState.scoreText.setText(`Score: ${gameState.score}`);				
-    	gameState.livesText.setText(`Lives: ${gameState.lives}`);
+    gameState.livesText.setText(`Lives: ${gameState.lives}`);
 		const catchedText = this.add.text(150, 600, '', { fontSize: '62px'});
 		catchedText.setStyle({ backgroundColor: '#000000', fill: '#ffffff' });
 		catchedText.setPadding(3, 5);

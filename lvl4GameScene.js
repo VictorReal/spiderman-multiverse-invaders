@@ -98,7 +98,9 @@ class lvl4GameScene extends Phaser.Scene {
       this.time.delayedCall(1000, () => {   	
         gameState.score = 0;
         gameState.lives = 5;  	
-      this.scene.restart('');
+        this.backgroundMusic.pause();
+        musicPosition = this.backgroundMusic.seek; 
+        this.scene.restart('');
       });     
     });
     

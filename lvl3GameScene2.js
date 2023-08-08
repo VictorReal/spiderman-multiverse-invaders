@@ -76,7 +76,9 @@ class lvl3GameScene2 extends Phaser.Scene {
     .setAlpha(0.9)
     .setScale(0.14);
     restartButton.on('pointerdown', () => {
-      this.time.delayedCall(1000, () => {   	
+      this.time.delayedCall(1000, () => { 
+        this.backgroundMusic.pause();
+        musicPosition = this.backgroundMusic.seek;   	
         this.scene.restart('');
       });     
     });

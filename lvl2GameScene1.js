@@ -97,8 +97,10 @@ class lvl2GameScene1 extends Phaser.Scene {
     restartButton.on('pointerdown', () => {
       this.time.delayedCall(1000, () => {   	
         gameState.score = 0;
-        gameState.lives = 5;  	
-      this.scene.restart('');
+        gameState.lives = 5; 
+        this.backgroundMusic.pause();
+        musicPosition = this.backgroundMusic.seek;  	
+        this.scene.restart('');
       });     
     });
 
