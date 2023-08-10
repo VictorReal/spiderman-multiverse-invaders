@@ -8,7 +8,7 @@ class lvl3GameScene1 extends Phaser.Scene {
   
   preload() {
     this.load.image('platform3', './media/general/lvl3-platform3-1.png');
-    this.load.spritesheet('milesanim', './media/skins/miles-anim.png', { frameWidth: 128, frameHeight: 128});
+    this.load.spritesheet('milesanim', './media/skins/miles-anim.png', { frameWidth: 165, frameHeight: 226});
     this.load.spritesheet('gwen-anim', './media/skins/gwen-anim.png', { frameWidth: 288, frameHeight: 330})
   
     this.load.image('bg31', './media/general/lvl3-sun.png');      
@@ -171,7 +171,7 @@ class lvl3GameScene1 extends Phaser.Scene {
       this.createPlatform(xIndex, yIndex);
     } 
 
-    gameState.goal = this.physics.add.sprite(gameState.width - 80, 100, 'milesanim');
+    gameState.goal = this.physics.add.sprite(gameState.width - 80, 100, 'milesanim').setScale(0.6);
   
     this.physics.add.overlap(gameState.player, gameState.goal, function() {
       this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
@@ -248,10 +248,10 @@ class lvl3GameScene1 extends Phaser.Scene {
   pauseGame() {
     gameState.isPaused = true;  
     this.physics.pause();
-    const pauseText = this.add.text(300, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
+    const pauseText = this.add.text(350, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
     pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
     this.ptLayer.add(pauseText);
-    this.ptLayer.setX(this.cameras.main.scrollX + 300);
+    this.ptLayer.setX(this.cameras.main.scrollX + 350);
   }
 
   resumeGame() {

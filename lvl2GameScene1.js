@@ -4,7 +4,7 @@ class lvl2GameScene1 extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image('miles', './media/skins/smiles.png');
+		this.load.image('miles', './media/skins/miles.png');
 		this.load.image('spiderReweb', './media/general/spiderReweb.png');
 		this.load.image('rightButton', './media/general/btn-right.svg');
 		this.load.image('leftButton', './media/general/btn-left.svg');
@@ -302,7 +302,7 @@ class lvl2GameScene1 extends Phaser.Scene {
     gameState.enemyVelocity = 0
     gameState.player.setVelocity(0);
     this.physics.pause();
-    this.pauseText = this.add.text(300, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
+    this.pauseText = this.add.text(350, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
     this.pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
   }
 

@@ -4,7 +4,7 @@ class lvl1GameScene extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image('miles', './media/skins/smiles.png');
+		this.load.image('miles', './media/skins/miles.png');
 		this.load.image('spiderReweb', './media/general/spiderReweb.png');
 		this.load.image('rightButton', './media/general/btn-right.svg');
 		this.load.image('leftButton', './media/general/btn-left.svg');
@@ -167,7 +167,7 @@ class lvl1GameScene extends Phaser.Scene {
 						} else if (gameState.score > 9 && !gameState.spawnedEnemy2){
 							const newEnemy2 = 'scarlet-spider';
 							availableEnemies.push(newEnemy2);
-							gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.2).setGravityY(-194);
+							gameState.enemies.create(randomX, randomY, newEnemy2).setScale(0.17).setGravityY(-194);
 							gameState.spawnedEnemy2 = true;
 						} else if (gameState.score > 14 && !gameState.spawnedEnemy3) {
 							const newEnemy3 = 'spider-man2099';
@@ -176,7 +176,7 @@ class lvl1GameScene extends Phaser.Scene {
 							gameState.spawnedEnemy3 = true;
 						} else {
 							const randomSpiderman = Phaser.Utils.Array.GetRandom(availableEnemies);
-							gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.2).setGravityY(-200);
+							gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.18).setGravityY(-200);
 						}
 					}
 					enemyCount++;
@@ -197,7 +197,7 @@ class lvl1GameScene extends Phaser.Scene {
 				});
 				if (!isTooClose) {
 					const randomSpiderman = Phaser.Utils.Array.GetRandom(spidermen);
-					gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.2).setGravityY(-200);
+					gameState.enemies.create(randomX, randomY, randomSpiderman).setScale(0.18).setGravityY(-200);
 					break;
 				}
 			} while (true);
@@ -318,7 +318,7 @@ class lvl1GameScene extends Phaser.Scene {
     gameState.enemyVelocity = 0
 		gameState.player.setVelocity(0);
 		this.physics.pause();
-    this.pauseText = this.add.text(300, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
+    this.pauseText = this.add.text(350, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
     this.pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
 	}
 

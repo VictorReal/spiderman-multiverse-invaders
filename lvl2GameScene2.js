@@ -302,7 +302,7 @@ class lvl2GameScene2 extends Phaser.Scene {
     gameState.enemyVelocity = 0
     gameState.player.setVelocity(0);
     this.physics.pause();
-    this.pauseText = this.add.text(300, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
+    this.pauseText = this.add.text(350, 600, 'Pause', { fontSize: '75px', fill: '#ffffff' });
     this.pauseText.setStyle({ backgroundColor: '#000000', fill: '#ffffff', padding: 10 });
   }
 
