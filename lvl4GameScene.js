@@ -257,7 +257,7 @@ class lvl4GameScene extends Phaser.Scene {
 				this.physics.pause();
         gameState.websLoop.destroy();
 
-				const winText = this.add.text(200, 600, 'You won the game!', { fontSize: '62px', fill: '#ffffff'  });
+				const winText = this.add.text(150, 600, 'You won the game!', { fontSize: '62px', fill: '#ffffff'  });
 				winText.setStyle({ backgroundColor: '#000000', fill: '#ffffff'});
 				winText.setPadding(3, 5);
 

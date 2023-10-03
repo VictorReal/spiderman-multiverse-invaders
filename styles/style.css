@@ -29,74 +29,9 @@ body{
     top: 0;
     left: 0;
   }
+  @media only screen and (min-width:600px){
+    body {
+      width: 370px;
+    }
+  }
   
-/*
-
-
-#menu {
-    margin: 10px; 
-    display: flex;
-    justify-content: flex-end;
-}
-#music-btn{
-    color: whitesmoke;
-    background-color: darkblue;
-    border: 0px solid darkblue;
-    margin: 3px;
-    padding: 3px 10px;
-    border-radius: 25px;
-    font-size: 22px;
-}
-a, a:visited, a:hover {
-    text-decoration: none;
-    color: whitesmoke;
-}
-#music-btn:hover {
-    box-shadow: 0px 0px 10px 0px whitesmoke;
-}
-@keyframes glowing {
-    0% {
-      background-color: gray;
-      box-shadow: 0 0 5px gray;
-    }
-    70% {
-      background-color: lightgray;
-      box-shadow: 0 0 20px lightgray;
-    }
-    100% {
-      background-color: gray;
-      box-shadow: 0 0 5px gray;
-    }
-}
-#start-btn { 
-    color: whitesmoke;
-    border: none;
-    border-radius: 15px;
-    font-size: 20px;
-    padding: 5px 15px;
-    animation: glowing 3000ms infinite;
-}
-#start-container{
-    width: 100vw;
-    display: flex;    
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    padding-top: 520px;
-}
-#op-poster {
-    width: 100vw;  
-}
-@media (min-width: 850px) {
-    body{
-        width: 400px;
-        margin-left: 500px;
-    }
-    #start-container  {
-        width: 400px;
-    }
-    #op-poster{
-        width: 100%;  
-    }
-    
-}
